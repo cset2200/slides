@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200" class="slide level2">
+<h2>CSET 2200</h2>
+<h3 id="lecture-3---osi-modeltcp-modelnetwork-theory">Lecture 3 - OSI Model/TCP Model/Network Theory</h3>
+</section>
+<section id="review-network-history" class="slide level2">
+<h2>Review network history</h2>
+<figure>
+<img src="AGS.jpg" alt="Cisco AGS" /><figcaption>Cisco AGS</figcaption>
+</figure>
+</section>
+<section id="the-osi-model" class="slide level2">
+<h2>The OSI model</h2>
+<h4 id="aka-that-thing-you-need-to-learn-but-dont-directly-use">AKA that thing you need to learn but don't directly use</h4>
+</section>
+<section id="the-osi-model-1" class="slide level2">
+<h2>The OSI Model</h2>
+<figure>
+<img src="OSI.jpg" alt="OSI Model" /><figcaption>OSI Model</figcaption>
+</figure>
+<aside class="notes">
+<ul>
+<li>Joint ISO and CCITT</li>
+<li>1984 published</li>
+<li>Abstract model of networking</li>
+<li>Influenced later designs</li>
+<li>Still used for reference</li>
+<li>Things at each layer speak to each other via PDU (Protocol Data Units) using above and below layers</li>
+</ul>
+</aside>
+</section>
+<section id="ways-to-remember-it" class="slide level2">
+<h2>Ways to remember it</h2>
+<p>Programmer's don't need to see pretty applications</p>
+</section>
+<section id="ways-to-remember-it-1" class="slide level2">
+<h2>Ways to remember it</h2>
+<p>Please do not throw sausage pizza away</p>
+<figure>
+<img src="Pizza.jpg" alt="Mmmm Pizza" /><figcaption>Mmmm Pizza</figcaption>
+</figure>
+</section>
+<section id="ways-to-remember-it-2" class="slide level2">
+<h2>Ways to remember it</h2>
+<p>People don't need those stupid packets anyways</p>
+<figure>
+<img src="TR.jpg" alt="Token Ring" /><figcaption>Token Ring</figcaption>
+</figure>
+</section>
+<section id="ways-to-remember-it-3" class="slide level2">
+<h2>Ways to remember it</h2>
+<p>Please do not teach students pointless acronyms</p>
+</section>
+<section id="physical-layer" class="slide level2">
+<h2>Physical Layer</h2>
+<ul>
+<li>Data Unit: Bit</li>
+<li>Electrical</li>
+<li>Various technologies (Ethernet/Token Ring/Wifi)</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Defined largely by IEEE (Institute of Electical and Electronics Engineers)</li>
+<li>Working groups define electrical signals</li>
+<li>May be light in the case of fiber</li>
+<li>May also be radio waves</li>
+<li>Bluetooth, Zigbee, Wifi, Token Ring, Ethernet all examples</li>
+</ul>
+</aside>
+</section>
+<section id="data-link-layer" class="slide level2">
+<h2>Data Link Layer</h2>
+<ul>
+<li>Data Unit: Frame</li>
+<li>Reliable Transport</li>
+<li>Ethernet - 802.2</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Connections between local nodes in LAN</li>
+<li>Adjacent nodes in WAN (PtP)</li>
+<li>Provides syncronization</li>
+<li>Adds error control</li>
+</ul>
+</aside>
+</section>
+<section id="network-layer" class="slide level2">
+<h2>Network Layer</h2>
+<ul>
+<li>Data Unit: Packet</li>
+<li>Not guaranteed to be reliable</li>
+<li>May split packets if too big</li>
+<li>IP</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Connectionless model</li>
+<li>Provides host addressing (MAC vs IP)</li>
+<li>Provides forwarding of data between layer 2 networks (Router)</li>
+<li>IP/IPv6/ICMP/IPX</li>
+</ul>
+</aside>
+</section>
+<section id="transport-layer" class="slide level2">
+<h2>Transport Layer</h2>
+<ul>
+<li>Data Unit: Datagram, Segment</li>
+<li>Provides multiplexing and flow control</li>
+<li>UDP, TCP</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Adds connection oriented services to Network</li>
+<li>Not ALL are connection oriented (UDP)</li>
+<li>Mutiplexing</li>
+<li>Reliability</li>
+<li>TCP, UDP</li>
+</ul>
+</aside>
+</section>
+<section id="session-layer" class="slide level2">
+<h2>Session Layer</h2>
+<ul>
+<li>Handles Burrito Delivery (Just seeing if you're paying attention)</li>
+<li>Handles sessions and establishment of connections</li>
+<li>Nothing really in TCP/IP model</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Can handle connection restoriation</li>
+<li>AAA sometimes handled here</li>
+<li>X25 and Appletalk ZIP examples</li>
+</ul>
+</aside>
+</section>
+<section id="presentation-layer" class="slide level2">
+<h2>Presentation Layer</h2>
+<ul>
+<li>Handles converting data between formats</li>
+<li>Allows program to be absolved of conversions</li>
+<li>Presentation layer is usually OS, but may be application</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Might convert file formats (ASCII/EBDIC)</li>
+<li>Serialization of program data can happen here (Raw data to JSON or XML)</li>
+<li>Application level encryption like SSL is here too</li>
+</ul>
+</aside>
+</section>
+<section id="application-layer" class="slide level2">
+<h2>Application Layer</h2>
+<ul>
+<li>Application all the things</li>
+<li>Handles higher level protocals implemented in the application</li>
+<li>Examples include SMTP, NNTP, FTP</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Much higher level protocols that deliver data, etc</li>
+<li>DNS, DHCP, BootP will be discussed in class</li>
+</ul>
+</aside>
+</section>
+<section id="tcpip-model" class="slide level2">
+<h2>TCP/IP Model</h2>
+<figure>
+<img src="TCPModel.gif" alt="OSI vs TCP" /><figcaption>OSI vs TCP</figcaption>
+</figure>
+<aside class="notes">
+<ul>
+<li>Implemented in practice</li>
+<li>Based on OSI model, but collapses some for simplicity</li>
+<li>Application, Presentation and Session just moved to application</li>
+<li>Most of these done in software anyways</li>
+</ul>
+</aside>
+</section>
+<section id="comparisons-of-models" class="slide level2">
+<h2>Comparisons of Models</h2>
+<ul>
+<li>TCP/IP simplified</li>
+<li>I believe 5 layers</li>
+<li>Segregates protocols more logically</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Example of theoritical model vs implementation</li>
+<li>Much less loosely defined than OSI model</li>
+</ul>
+</aside>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions?</h2>
+</section>
+<section id="general-network-discussion" class="slide level2">
+<h2>General Network Discussion</h2>
+</section>
+<section id="next-week" class="slide level2">
+<h2>Next week</h2>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

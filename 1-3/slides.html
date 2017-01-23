@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200-lecture-4" class="slide level2">
+<h2>CSET 2200 Lecture 4</h2>
+</section>
+<section id="ethernet---layer-12" class="slide level2">
+<h2>Ethernet - Layer 1/2</h2>
+<ul>
+<li>Primary access used by wired clients</li>
+<li>Defined by IEEE</li>
+<li>Originally 802.3 group but others</li>
+</ul>
+</section>
+<section id="ethernet---layer-12-1" class="slide level2">
+<h2>Ethernet - Layer 1/2</h2>
+<ul>
+<li>Ethernet PHY describes layer 1 piece</li>
+<li>Electrical standards over Coax or Twisted Pair</li>
+<li>Names are (speed)Base(Technology)</li>
+</ul>
+</section>
+<section id="coax" class="slide level2">
+<h2>Coax</h2>
+</section>
+<section id="base5" class="slide level2">
+<h2>10Base5</h2>
+<ul>
+<li>10mbps over thick coax</li>
+<li>Used N connector or vampire tap</li>
+<li>Bus based - shared access</li>
+</ul>
+<figure>
+<img src="10Base5.jpg" alt="10Base5" /><figcaption>10Base5</figcaption>
+</figure>
+</section>
+<section id="base2" class="slide level2">
+<h2>10Base2</h2>
+<ul>
+<li>10mbps over thin coax</li>
+<li>Called thinnet</li>
+<li>Used BNC connectors</li>
+<li>Also bus based - used a terminator</li>
+</ul>
+<figure>
+<img src="10Base2.jpg" alt="10Base2" /><figcaption>10Base2</figcaption>
+</figure>
+</section>
+<section id="twisted-pair" class="slide level2">
+<h2>Twisted Pair</h2>
+</section>
+<section id="baset" class="slide level2">
+<h2>10BaseT</h2>
+<ul>
+<li>T means Twisted Pair</li>
+<li>10mbps over 8P8C cable (RJ45/Cat 3)</li>
+<li>100m max length</li>
+<li>Star - requires hub or switch</li>
+</ul>
+<figure>
+<img src="10BaseT.jpg" alt="10BaseT" /><figcaption>10BaseT</figcaption>
+</figure>
+</section>
+<section id="baset-1" class="slide level2">
+<h2>100BaseT</h2>
+<ul>
+<li>100mbps over Cat 5 cable</li>
+<li>Uses 2 pairs</li>
+<li>100m max length</li>
+<li>100BaseT4 for a 4 pair version over cat 3</li>
+</ul>
+</section>
+<section id="baset-2" class="slide level2">
+<h2>1000BaseT</h2>
+<ul>
+<li>1gpbs over Cat 5 ot 5e cable</li>
+<li>Uses all 4 pairs</li>
+<li>Full Duplex only in practice</li>
+<li>Also 100m max length</li>
+</ul>
+</section>
+<section id="gbaset" class="slide level2">
+<h2>10GBaseT</h2>
+<ul>
+<li>10gbps over Cat 6 (55m) or Cat 6a (100m)</li>
+<li>2.5GBaseT and 5GBaseT varients exist</li>
+<li>Just gaining use</li>
+</ul>
+</section>
+<section id="fiber" class="slide level2">
+<h2>Fiber</h2>
+<ul>
+<li>Multimode
+<ul>
+<li>Larger - 50/125 or 62.5um/125</li>
+<li>Light bounces</li>
+<li>Slower - shorter distances</li>
+</ul></li>
+<li>Single Mode
+<ul>
+<li>8-10.5um/125</li>
+<li>Light goes straight</li>
+<li>Faster - longer distances</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="MMFiber.jpg" alt="Multimode Fiber" /><figcaption>Multimode Fiber</figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="FiberModes.jpg" alt="Fiber Modes" /><figcaption>Fiber Modes</figcaption>
+</figure>
+</section>
+<section id="basefl" class="slide level2">
+<h2>10BaseFL</h2>
+<ul>
+<li>10mbps over Multimode Fiber</li>
+<li>Up to 2km</li>
+<li>Rarely used - usually 100mpbs+</li>
+</ul>
+</section>
+<section id="basefx" class="slide level2">
+<h2>100BaseFX</h2>
+<ul>
+<li>100mbps over Multimode fiber</li>
+<li>400m for half duplex (Collision detection), 2km full duplex</li>
+<li>Commonly uses SC or ST</li>
+</ul>
+<figure>
+<img src="STSC.jpg" alt="SC/ST" /><figcaption>SC/ST</figcaption>
+</figure>
+</section>
+<section id="basesx" class="slide level2">
+<h2>1000BaseSX</h2>
+<ul>
+<li>1gbps over multimode</li>
+<li>550m max</li>
+<li>Uses SC, ST and LC</li>
+</ul>
+</section>
+<section id="other-media" class="slide level2">
+<h2>Other Media</h2>
+<ul>
+<li>100BaseBX/LX - long haul 100mbps over Single Mode fiber</li>
+<li>1000BaseLX/BX/ZX - 1gbps over Single Mode Fiber</li>
+</ul>
+</section>
+<section id="layer-1-meets-layer-2" class="slide level2">
+<h2>Layer 1 meets layer 2</h2>
+<ul>
+<li>Layer 1 defines electrical signals</li>
+<li>Electrical signals have properties</li>
+<li>If two transmit at once the waves combine or cancel</li>
+<li>Need a method to detect</li>
+</ul>
+</section>
+<section id="broadcasts" class="slide level2">
+<h2>Broadcasts</h2>
+<ul>
+<li>Ethernet is a broadcast medium</li>
+<li>Every station sees every frame</li>
+<li>This is not entirely true at this time with wired</li>
+<li>Is true with wireless</li>
+</ul>
+</section>
+<section id="csmacd" class="slide level2">
+<h2>CSMA/CD</h2>
+<ul>
+<li>Carrier Sense Multi Access with Collision Detect</li>
+<li>Each station listens if it has a packet to transmit</li>
+<li>Keeps listening while transmitting</li>
+<li>If colission jams and backs off for a random time</li>
+</ul>
+</section>
+<section id="collision-domain" class="slide level2">
+<h2>Collision Domain</h2>
+<ul>
+<li>All stations which share an electrical medium</li>
+<li>On coax includes all stations on the same cable</li>
+<li>On UTP networks, all stations on a &quot;hub&quot;</li>
+<li>Switched networks limit collision domains</li>
+</ul>
+</section>
+<section id="full-duplex-vs-half-duplex" class="slide level2">
+<h2>Full Duplex vs Half Duplex</h2>
+<ul>
+<li>Full can transmit and receive at once</li>
+<li>No colissions on Full Duplex - colission domain of one</li>
+<li>Seperate transmit and receive pairs</li>
+<li>Normally switch vs hub - we'll discuss later</li>
+</ul>
+</section>
+<section id="onto-layer-2" class="slide level2">
+<h2>Onto Layer 2</h2>
+</section>
+<section id="ethernet-at-layer-2" class="slide level2">
+<h2>Ethernet at Layer 2</h2>
+<ul>
+<li>Remember, layer 2 PDU called a frame</li>
+<li>Ethernet frame defined in 802.3</li>
+<li>Multiple types of ethernet frames over the years</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>We'll cover common elements</li>
+<li>Then discuss each format then focus on ethernet ii</li>
+</ul>
+</aside>
+</section>
+<section id="ethernet-frame-format-ethernet-ii" class="slide level2">
+<h2>Ethernet Frame Format (Ethernet II)</h2>
+<ul>
+<li>7 byte Preamble</li>
+<li>1 byte start frame delimeter</li>
+<li>6 byte destintion mac</li>
+<li>6 byte source mac</li>
+<li>optional 4 byte tag (More later)</li>
+<li>2 byte type</li>
+<li>46-1500 byte payload</li>
+<li>4 byte Frame Check Sequence (CRC)</li>
+<li>12 byte inter packet gap</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="EtherFrame.png" alt="EthernetFrame" /><figcaption>EthernetFrame</figcaption>
+</figure>
+</section>
+<section id="preamble-and-sfd" class="slide level2">
+<h2>Preamble and SFD</h2>
+<ul>
+<li>Preamble 7 bytes of alternating 10101010</li>
+<li>Allows clock sync</li>
+<li>55 Hex (Ethernet sends least sig bit first)</li>
+<li>SFD is 10101011</li>
+<li>Represents end of header - get ready to receive data</li>
+<li>D5 Hex</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Draw this out</li>
+<li>Explain encoding and why electricaly it's hard</li>
+</ul>
+</aside>
+</section>
+<section id="crc-and-interpacket-gap" class="slide level2">
+<h2>CRC and Interpacket Gap</h2>
+<ul>
+<li>Last 4 bytes are CRC of entire frame other than FCS</li>
+<li>CRC is complemented to allow end of frame to be calculated without length</li>
+<li>0xC704DD7B is the magic number in this case</li>
+<li>CRC is math heavy - we won't cover it's internals</li>
+<li>Interpacket Gap is 12 bytes worth of silence - we leave the line alone</li>
+<li>There is an end of packet marker with some encodings</li>
+</ul>
+</section>
+<section id="other-misc-before-frame-types" class="slide level2">
+<h2>Other Misc before frame types</h2>
+<ul>
+<li>Technically the Preamble, SFD and Interpacket Gap are layer 1 components</li>
+<li>Frame Check Sequence (CRC) is error detection for layer 2</li>
+</ul>
+</section>
+<section id="ethernet-frame-types" class="slide level2">
+<h2>Ethernet Frame Types</h2>
+<ul>
+<li>Raw IEEE 802.3 - used by Novel for IPX</li>
+<li>IEEE 802.2 LLC - used by protocols implmenting raw layer 3 over it
+<ul>
+<li>Used by Netware and some OSI models</li>
+</ul></li>
+<li>IEEE 802.2 SNAP - Extension of above providing additional &quot;addresses&quot;
+<ul>
+<li>Used by Appletalk</li>
+</ul></li>
+<li>EtherNet II - Most common in use
+<ul>
+<li>Defined an ethertype header which describes contents</li>
+<li>Can optionaly have a length - 802.3 allows both</li>
+<li>Length comes before</li>
+<li>1536 max length</li>
+</ul></li>
+</ul>
+</section>
+<section id="ethernet-ii-frame-format" class="slide level2">
+<h2>Ethernet II Frame Format</h2>
+<ul>
+<li>6 byte destination MAC</li>
+<li>6 byte source MAC</li>
+<li>Optional 4 byte 802.1q header</li>
+<li>2 byte EtherType or length</li>
+<li>2 EtherType if length present</li>
+<li>42-1500 byte payload (46 if no 802.1q)</li>
+</ul>
+</section>
+<section id="mac-addresses" class="slide level2">
+<h2>MAC Addresses</h2>
+<ul>
+<li>Stands for Media Access Control address</li>
+<li>6 Octets</li>
+<li>First 3 are Organisationally Unique Identifier
+<ul>
+<li>Identifies manufacturer</li>
+</ul></li>
+<li>Next 3 bytes are unique to the NIC</li>
+<li>Unique, but can often be changed these days</li>
+</ul>
+</section>
+<section id="mac-addresses-cont" class="slide level2">
+<h2>MAC Addresses (Cont)</h2>
+<ul>
+<li>OUI's assigned in blocks to manufacturers</li>
+<li>Last bits of first byte have meaning</li>
+<li>Bit 1 is Global or local (Should be flipped when edited)</li>
+<li>Bit 0 is Unicast vs Multicast</li>
+</ul>
+</section>
+<section id="mac-addresses-cont-1" class="slide level2">
+<h2>Mac Addresses (Cont)</h2>
+<ul>
+<li>Last 3 bytes can be set as pleased</li>
+<li>Must me unique and usually burned in ROM</li>
+<li>As mentioned, many allow spoofinf MAC these days</li>
+</ul>
+</section>
+<section id="ethertype" class="slide level2">
+<h2>EtherType</h2>
+<ul>
+<li>Used to specify type of payload frame</li>
+<li>If under 1536 assumed to be size</li>
+<li>If size, next 2 bytes are type</li>
+<li>Common values
+<ul>
+<li>0x0800 - IPV4</li>
+<li>0x0806 - ARP</li>
+<li>0x86DD - IPv6</li>
+</ul></li>
+</ul>
+</section>
+<section id="examples" class="slide level2">
+<h2>Examples</h2>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="next-session" class="slide level2">
+<h2>Next session</h2>
+<ul>
+<li>Covering repeaters, hubs, switches, etc</li>
+<li>https://en.wikipedia.org/wiki/Ethernet and subpages</li>
+<li>Book chapters 15, 17, 19 (book is all over)</li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
