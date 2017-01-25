@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200-lecture-5" class="slide level2">
+<h2>CSET 2200 Lecture 5</h2>
+</section>
+<section id="questionsreview" class="slide level2">
+<h2>Questions/Review</h2>
+</section>
+<section id="ethernet-devices" class="slide level2">
+<h2>Ethernet Devices</h2>
+</section>
+<section id="shared-bus" class="slide level2">
+<h2>Shared bus</h2>
+</section>
+<section id="repeater" class="slide level2">
+<h2>Repeater</h2>
+<ul>
+<li>Layer 2 device</li>
+<li>Used to extend cable reach</li>
+<li>Limitations on max number</li>
+</ul>
+</section>
+<section id="hub" class="slide level2">
+<h2>Hub</h2>
+<ul>
+<li>Layer 2 device</li>
+<li>Retransmits all receives frames on every port</li>
+<li>Basically a multiport repeater</li>
+</ul>
+</section>
+<section id="hub-contd" class="slide level2">
+<h2>Hub (contd)</h2>
+<ul>
+<li>No memory (forwards packets as received)</li>
+<li>Half Duplex</li>
+<li>Only single speed supported</li>
+</ul>
+</section>
+<section id="hub-contd-1" class="slide level2">
+<h2>Hub (contd)</h2>
+<ul>
+<li>Limit to number of segments and hubs (4 3 2)</li>
+<li>Electrical properties limit this</li>
+<li>Propogation takes time</li>
+<li>Need to be able to catch colissions</li>
+</ul>
+</section>
+<section id="hub-contd-2" class="slide level2">
+<h2>Hub (contd)</h2>
+<ul>
+<li>Mostly phased out these days for switches</li>
+<li>Sometimes used as active taps</li>
+</ul>
+</section>
+<section id="bridge" class="slide level2">
+<h2>Bridge</h2>
+<ul>
+<li>Bridges join two collision domains</li>
+<li>Have some intelligence to handle traffic flow</li>
+<li>Have memory, usually store and forward</li>
+<li>Allow networks to get grow</li>
+<li>Limit collisions</li>
+</ul>
+</section>
+<section id="switch" class="slide level2">
+<h2>Switch</h2>
+<ul>
+<li>Switches address many issues hubs have</li>
+<li>Technically a type of bridge</li>
+<li>Limit traffic to necessary ports</li>
+<li>Each port has it's own collision domain</li>
+</ul>
+</section>
+<section id="switch-contd" class="slide level2">
+<h2>Switch (contd)</h2>
+<ul>
+<li>Required for full duplex communication</li>
+<li>In Full duplex mode essentially a PtP link</li>
+<li>Collissions impossible with only two stations</li>
+</ul>
+</section>
+<section id="switch-contd-1" class="slide level2">
+<h2>Switch (contd)</h2>
+<ul>
+<li>Also help with network size</li>
+<li>Since each segment is seperate, we don't have delay concerns</li>
+<li>Build an internal address table</li>
+<li>Learns by observing incoming traffic</li>
+<li>Once port of a MAC address known, does not flood packet</li>
+</ul>
+</section>
+<section id="switch-contd-2" class="slide level2">
+<h2>Switch (contd)</h2>
+<ul>
+<li>Loops still a problem</li>
+<li>Addressed in various ways we'll cover later</li>
+</ul>
+</section>
+<section id="types-of-switching" class="slide level2">
+<h2>Types of Switching</h2>
+<ul>
+<li>Store and Forward
+<ul>
+<li>Receives entire packet before forwarding</li>
+<li>Drops packets with errors</li>
+</ul></li>
+<li>Cut Through
+<ul>
+<li>Only looks at frame dest address then forwards</li>
+<li>Propgates errors</li>
+</ul></li>
+<li>Fragment Free
+<ul>
+<li>Looks at first 64 bytes then cut through</li>
+</ul></li>
+<li>Adaptive
+<ul>
+<li>Switches between above modes based on types</li>
+</ul></li>
+</ul>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="switching-gears" class="slide level2">
+<h2>Switching Gears</h2>
+<ul>
+<li>Remaining Layer 2 topics
+<ul>
+<li>VLANs</li>
+<li>Spanning Tree</li>
+<li>Design</li>
+</ul></li>
+<li>Will revisit after some L3 as it makes sense</li>
+</ul>
+</section>
+<section id="layer2-on-to-layer3" class="slide level2">
+<h2>Layer2 on to Layer3</h2>
+</section>
+<section id="diagram" class="slide level2">
+<h2>Diagram</h2>
+</section>
+<section id="basic-layer-3" class="slide level2">
+<h2>Basic Layer 3</h2>
+<ul>
+<li>In TCP/IP this is IP</li>
+<li>Stands for Internet Protocol</li>
+<li>Usually IPv4 is what is referred to</li>
+<li>Addresses in dotted quad (129.2.3.4)</li>
+</ul>
+</section>
+<section id="layer-3-networks" class="slide level2">
+<h2>Layer 3 networks</h2>
+<ul>
+<li>Each network defined as a network and a mask</li>
+<li>Each Layer 3 network has a network address and a broadcast</li>
+<li>Similar in function to broadcast at layer 2</li>
+<li>Uses to decide if packet is local</li>
+</ul>
+</section>
+<section id="mapping-layer-2-to-layer-3" class="slide level2">
+<h2>Mapping Layer 2 to Layer 3</h2>
+<ul>
+<li>Need a way to map a given layer 3 address to a given layer 2 address</li>
+<li>Answer is ARP (Address Resolution Protocol)</li>
+</ul>
+</section>
+<section id="arp" class="slide level2">
+<h2>ARP</h2>
+<ul>
+<li>Layer 2 protocol to aid layer 3</li>
+<li>Implemented on many technologies</li>
+<li>Replaced in IPv6 with Neighbor Discovery Protocol</li>
+<li>Defined in RFCs 826 and 903</li>
+</ul>
+</section>
+<section id="arp-contd" class="slide level2">
+<h2>ARP (contd)</h2>
+<ul>
+<li>Hosts use ARP to find a layer 2 address given a layer 3</li>
+<li>Request Packets are sent to the broadcast ethernet address</li>
+<li>Response packets are normally sent to the requestor</li>
+</ul>
+</section>
+<section id="arp-packets" class="slide level2">
+<h2>ARP Packets</h2>
+<ul>
+<li>Layer 2 EtherType of 0x0806 for Ethernet</li>
+<li>Length of Packet is determined by Layer 2 and layer 3 protocol</li>
+<li>For our purposes we care about Ethernet and IPv4</li>
+</ul>
+</section>
+<section id="arp-packet-format" class="slide level2">
+<h2>ARP Packet Format</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Length</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>Hardware Type (1)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Protocol Type (0x0800)</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>Hardware Addr Length (6)</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Protocol Addr Length (4)</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Operation</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Sender Hardware Address</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Sender Protocol Address</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Target Hardware Address</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Target Protocol Address</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="other-arp-stuff" class="slide level2">
+<h2>Other ARP stuff</h2>
+<ul>
+<li>Operation is 1 for request, 2 for reply</li>
+<li>Hosts normally cache arp</li>
+<li>Some hosts send intential arp broadcast</li>
+<li>Prepopulates caches</li>
+</ul>
+</section>
+<section id="some-examples" class="slide level2">
+<h2>Some examples</h2>
+</section>
+<section id="security-concerns" class="slide level2">
+<h2>Security concerns</h2>
+</section>
+<section id="questions-1" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="next-lesson" class="slide level2">
+<h2>Next Lesson</h2>
+<ul>
+<li>Starting on real layer 3</li>
+<li>Now it gets more interesting</li>
+<li>https://en.wikipedia.org/wiki/IPv4</li>
+<li>Book 20, 21</li>
+<li>We'll be here for a bit</li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
