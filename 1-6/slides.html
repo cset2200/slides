@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset2200---lecture-7" class="slide level2">
+<h2>CSET2200 - Lecture 7</h2>
+</section>
+<section id="reviewquestions" class="slide level2">
+<h2>Review/Questions</h2>
+</section>
+<section id="ipv4-packet-format" class="slide level2">
+<h2>IPv4 Packet Format</h2>
+<ul>
+<li>Header
+<ul>
+<li>Length Variable</li>
+<li>Minimum length 5 32 bit words (20 bytes)</li>
+<li>Max length 15 words (60 bytes)</li>
+</ul></li>
+<li>Followed by data (Not included in checksum)</li>
+</ul>
+</section>
+<section id="ipv4-packet-header" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="IPv4 Header" /><figcaption>IPv4 Header</figcaption>
+</figure>
+</section>
+<section id="ipv4-packet-header-1" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="Version" /><figcaption>Version</figcaption>
+</figure>
+<ul>
+<li>4 bit field - always 4 for IPv4</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-2" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="IHL" /><figcaption>IHL</figcaption>
+</figure>
+<ul>
+<li>Internet Header Length - length of header in words</li>
+<li>4 bits</li>
+<li>Min 5, max 15</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-3" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="TOS" /><figcaption>TOS</figcaption>
+</figure>
+<ul>
+<li>8 bit field - Type of Service</li>
+<li>Used by Quality of Service</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-4" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="Total Length" /><figcaption>Total Length</figcaption>
+</figure>
+<ul>
+<li>16 bit field - Total packet length</li>
+<li>Min 20, Max 65535</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-5" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="Identification" /><figcaption>Identification</figcaption>
+</figure>
+<ul>
+<li>16 bit field - Used for fragment identification</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-6" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="Flags" /><figcaption>Flags</figcaption>
+</figure>
+<ul>
+<li>3 bits - bit 1 always 0</li>
+<li>bit 2 Do Not Fragment</li>
+<li>bit 3 More Fragments</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-7" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="Fragment Offset" /><figcaption>Fragment Offset</figcaption>
+</figure>
+<ul>
+<li>13 bits</li>
+<li>Measures fragment offset in 8 byte increments</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-8" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="TTL" /><figcaption>TTL</figcaption>
+</figure>
+<ul>
+<li>8 bits - Time to Live</li>
+<li>Decrements 1 with each hop</li>
+<li>Helps prevent loops</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-9" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="Protocol" /><figcaption>Protocol</figcaption>
+</figure>
+<ul>
+<li>8 bits</li>
+<li>Represents protocol on top of IP</li>
+<li>List maintained by IANA</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-10" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="Checksum" /><figcaption>Checksum</figcaption>
+</figure>
+<ul>
+<li>16 bits</li>
+<li>Only calculated on header</li>
+<li>Due to TTL, rewritten every hop</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-11" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="Source Address" /><figcaption>Source Address</figcaption>
+</figure>
+<ul>
+<li>32 bit</li>
+<li>Source address</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-12" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="Destination Address" /><figcaption>Destination Address</figcaption>
+</figure>
+<ul>
+<li>32 bit</li>
+<li>Destination address</li>
+</ul>
+</section>
+<section id="ipv4-packet-header-13" class="slide level2">
+<h2>IPv4 Packet Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="Options" /><figcaption>Options</figcaption>
+</figure>
+<ul>
+<li>Varied length depending on IHL</li>
+<li>Rarely used</li>
+<li>Many Routers block</li>
+</ul>
+</section>
+<section id="examples-packets" class="slide level2">
+<h2>Examples packets</h2>
+</section>
+<section id="subnets" class="slide level2">
+<h2>Subnets</h2>
+<ul>
+<li>&quot;Host&quot; section labels host</li>
+<li>&quot;Network&quot; section labels networks</li>
+<li>Use a subnet mask to seperate the two</li>
+</ul>
+</section>
+<section id="subnet-masks" class="slide level2">
+<h2>Subnet Masks</h2>
+<ul>
+<li>Binary Mask shows network vs host</li>
+<li>1 indicates network</li>
+<li>0 host</li>
+<li>Also written as dotted quad</li>
+</ul>
+</section>
+<section id="subnet-mask-examples" class="slide level2">
+<h2>Subnet Mask Examples</h2>
+<ul>
+<li>255.255.255.0 - Class C</li>
+<li><p>11111111 11111111 11111111 00000000</p></li>
+<li>255.255.0.0 - Class B</li>
+<li><p>11111111 11111111 00000000 00000000</p></li>
+<li>255.0.0.0 - Class A</li>
+<li><p>11111111 00000000 00000000 00000000</p></li>
+</ul>
+</section>
+<section id="written-examples---questions" class="slide level2">
+<h2>Written Examples - Questions</h2>
+</section>
+<section id="networks-and-hosts" class="slide level2">
+<h2>Networks and Hosts</h2>
+<ul>
+<li>Hosts all on the same local logical layer 2</li>
+<li>Networks are collections of hosts</li>
+<li>How do we connect them</li>
+</ul>
+</section>
+<section id="routing" class="slide level2">
+<h2>Routing</h2>
+<ul>
+<li>Process of getting packets between networks</li>
+<li>Performed by routers</li>
+<li>L3 Switches are a type of router</li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<ul>
+<li>DIAGRAM HERE</li>
+</ul>
+</section>
+<section id="route-tables" class="slide level2">
+<h2>Route Tables</h2>
+<ul>
+<li>Contain networks and destinations</li>
+<li>ex: 192.168.50.0 255.255.255.0 -&gt; 192.168.49.1</li>
+<li>Default written as 0.0.0.0 with a mask of 0.0.0.0</li>
+</ul>
+</section>
+<section id="route-tables-contd" class="slide level2">
+<h2>Route tables (contd)</h2>
+<ul>
+<li>Built manually (called static)</li>
+<li>May also be built by a routing protocol</li>
+<li>We won't focus on routing protocols but may touch</li>
+</ul>
+</section>
+<section id="examples" class="slide level2">
+<h2>Examples</h2>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="next---vlsm-part-1---chapter-21" class="slide level2">
+<h2>Next - VLSM Part 1 - Chapter 21</h2>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

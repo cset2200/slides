@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset2200-lecture-8" class="slide level2">
+<h2>CSET2200 Lecture 8</h2>
+</section>
+<section id="reviewquestions" class="slide level2">
+<h2>Review/Questions</h2>
+</section>
+<section id="quick-review-of-packet-moving" class="slide level2">
+<h2>Quick review of packet moving</h2>
+</section>
+<section id="cidr" class="slide level2">
+<h2>CIDR</h2>
+<ul>
+<li>CLassless Inter-domain Routing</li>
+</ul>
+</section>
+<section id="the-problem" class="slide level2">
+<h2>The problem</h2>
+<ul>
+<li>Classful networks wasteful</li>
+<li>Aggregation was poor</li>
+<li>Route bloat</li>
+<li>Limited big networks</li>
+</ul>
+</section>
+<section id="example---ut" class="slide level2">
+<h2>Example - UT</h2>
+</section>
+<section id="how-to-solve-it" class="slide level2">
+<h2>How to solve it</h2>
+<ul>
+<li>Allow segmenting network on any bit</li>
+<li>Allow grouping of networks (aggregation)</li>
+<li>Allocation of smaller networks</li>
+</ul>
+</section>
+<section id="vlsm" class="slide level2">
+<h2>VLSM</h2>
+<ul>
+<li>Variable length subnet mask</li>
+<li>Allows networks to be sized differently</li>
+<li>Core concept of CIDR</li>
+</ul>
+</section>
+<section id="available-networks" class="slide level2">
+<h2>Available Networks</h2>
+</section>
+<section id="aggregation" class="slide level2">
+<h2>Aggregation</h2>
+<ul>
+<li>Adjacent networks can be combined where distinction not needed</li>
+<li>Allows more efficient routing</li>
+<li>Large blocks allocated to providers which split them</li>
+</ul>
+</section>
+<section id="example---ut-again" class="slide level2">
+<h2>Example - UT Again</h2>
+</section>
+<section id="matching-networks" class="slide level2">
+<h2>Matching Networks</h2>
+<ul>
+<li>Done with Bitwise AND</li>
+<li>Network to match AND subnet - network to match</li>
+<li>Remember 1 is our care bit</li>
+</ul>
+</section>
+<section id="examples" class="slide level2">
+<h2>Examples</h2>
+<ul>
+<li>64.254.140.4/27</li>
+<li>64.254.140.165/28</li>
+<li>72.240.0.0/15</li>
+<li>131.183.222.23/23</li>
+</ul>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="next-session---more-vlsm-practice" class="slide level2">
+<h2>Next session - more VLSM practice</h2>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
