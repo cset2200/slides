@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200-lecture-11" class="slide level2">
+<h2>CSET 2200 Lecture 11</h2>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="summary-of-tcp" class="slide level2">
+<h2>Summary of TCP</h2>
+<h3 id="aka---what-you-actually-need-to-remember">AKA - What you actually need to remember</h3>
+<ul>
+<li>Stream Oriented</li>
+<li>Reliable
+<ul>
+<li>In order delivery</li>
+<li>Error Handling</li>
+</ul></li>
+<li>Providers Virtual Circuits</li>
+<li>Multiplexed</li>
+</ul>
+</section>
+<section id="summary-of-tcp-1" class="slide level2">
+<h2>Summary of TCP</h2>
+<ul>
+<li>Three Way Handshake initiates
+<ul>
+<li>SYN</li>
+<li>SYN/ACK</li>
+<li>ACK</li>
+</ul></li>
+<li>Four Way connection teardown
+<ul>
+<li>FIN</li>
+<li>ACK</li>
+<li>FIN</li>
+<li>ACK</li>
+</ul></li>
+</ul>
+</section>
+<section id="summary-of-tcp-2" class="slide level2">
+<h2>Summary of TCP</h2>
+<ul>
+<li>Each packet sent gets an ACK</li>
+<li>Up to window size can be sent without an ACK</li>
+<li>Newer TCP does Window Scaling to get bigger</li>
+</ul>
+</section>
+<section id="questions-1" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="layer-4---udpicmp" class="slide level2">
+<h2>Layer 4 - UDP/ICMP</h2>
+<ul>
+<li>UDP - User Datagram Protocol</li>
+<li>ICMP - Internet Control Message Protocol</li>
+</ul>
+</section>
+<section id="udp" class="slide level2">
+<h2>UDP</h2>
+<ul>
+<li>User Datagram Protocol</li>
+<li>Connectionless</li>
+<li>Unordered</li>
+<li>No guaranteed delivery</li>
+</ul>
+</section>
+<section id="udp-contd" class="slide level2">
+<h2>UDP (contd)</h2>
+<ul>
+<li>PDU is datagram</li>
+<li>Stateless</li>
+<li>Can support broadcast</li>
+</ul>
+</section>
+<section id="udp-contd-1" class="slide level2">
+<h2>UDP (contd)</h2>
+<ul>
+<li>Used when overhead of TCP too high</li>
+<li>Delay sensitive such as video or voice</li>
+<li>Broadcast and unidirectional well suited for some applications</li>
+</ul>
+</section>
+<section id="udp-header" class="slide level2">
+<h2>UDP Header</h2>
+<figure>
+<img src="UDPHeader.png" alt="UDP Header" /><figcaption>UDP Header</figcaption>
+</figure>
+</section>
+<section id="icmp" class="slide level2">
+<h2>ICMP</h2>
+<ul>
+<li>Internet Control Message Protocol</li>
+<li>&quot;Control Messages&quot; for IP</li>
+<li>Technicall Internet Layer</li>
+<li>Still Layer 4 in OSI model</li>
+</ul>
+</section>
+<section id="icmp-contd" class="slide level2">
+<h2>ICMP (contd)</h2>
+<ul>
+<li>Used by many internet utilities
+<ul>
+<li>ping</li>
+<li>traceroute</li>
+</ul></li>
+<li>Also used to send errors
+<ul>
+<li>Destination Unreachable</li>
+</ul></li>
+<li>Many misc functions</li>
+</ul>
+</section>
+<section id="icmp-header" class="slide level2">
+<h2>ICMP Header</h2>
+<figure>
+<img src="ICMPHeader.png" alt="ICMP Header" /><figcaption>ICMP Header</figcaption>
+</figure>
+</section>
+<section id="type-field" class="slide level2">
+<h2>Type Field</h2>
+<ul>
+<li>0 = Echo Reply</li>
+<li>3 = Destination Unreachable</li>
+<li>5 = Redirect</li>
+<li>8 = Echo Request</li>
+<li>11 = Time Exceeded</li>
+</ul>
+</section>
+<section id="code" class="slide level2">
+<h2>Code</h2>
+<ul>
+<li>Depends on Type</li>
+<li>Type 3 has many, 5 and 11 a few</li>
+<li>Type 3
+<ul>
+<li>0 = Destination Network Unreachable</li>
+<li>1 = Destination Host Unreachable</li>
+<li>4 = Fragmentation Required - DF Set</li>
+<li>9 = Host Admin denied</li>
+<li>10 = Network Admin Denied</li>
+<li>13 = Communication Admin Denied</li>
+</ul></li>
+</ul>
+</section>
+<section id="ping" class="slide level2">
+<h2>Ping</h2>
+<ul>
+<li>Sending host sends echo request</li>
+<li>Receiving host replies with echo reply</li>
+<li>Payload data the same</li>
+</ul>
+</section>
+<section id="traceroute" class="slide level2">
+<h2>Traceroute</h2>
+<ul>
+<li>Host sends packet with ttl of 1
+<ul>
+<li>ICMP Echo request, UDP or TCP</li>
+</ul></li>
+<li>TTL expires, router or host replies with ICMP Type 11</li>
+<li>Increment TTL and send again until response received from target</li>
+</ul>
+</section>
+<section id="questions-2" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="end-of-layer-4" class="slide level2">
+<h2>End of Layer 4</h2>
+</section>
+<section id="subneting" class="slide level2">
+<h2>Subneting</h2>
+</section>
+<section id="next-class" class="slide level2">
+<h2>Next class</h2>
+<ul>
+<li>Discussion of layers 5/6</li>
+<li>Start of discussions on some Layer 7 protocols</li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

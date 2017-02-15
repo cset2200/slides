@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200-lecture-10" class="slide level2">
+<h2>CSET 2200 Lecture 10</h2>
+</section>
+<section id="reviewquestions" class="slide level2">
+<h2>Review/Questions</h2>
+</section>
+<section id="layer-4" class="slide level2">
+<h2>Layer 4</h2>
+<ul>
+<li>Next Layer above Layer 3</li>
+<li>For our purpose Layer 4 means TCP/UDP and ICMP</li>
+<li>Adds services on top of layer 3</li>
+</ul>
+</section>
+<section id="tcp" class="slide level2">
+<h2>TCP</h2>
+<ul>
+<li>Transmission Control Protocol</li>
+<li>Connection Oriented</li>
+<li>One of the main protocols used on internet</li>
+</ul>
+</section>
+<section id="tcp-contd" class="slide level2">
+<h2>TCP (contd)</h2>
+<ul>
+<li>Reliable Delivery
+<ul>
+<li>Error corrected</li>
+<li>Packets in order</li>
+<li>Lost packets retransmitted</li>
+</ul></li>
+</ul>
+</section>
+<section id="tcp-contd-1" class="slide level2">
+<h2>TCP (contd)</h2>
+<ul>
+<li>Virtual connection
+<ul>
+<li>Acts as if a independent connection</li>
+</ul></li>
+</ul>
+</section>
+<section id="tcp-contd-2" class="slide level2">
+<h2>TCP (contd)</h2>
+<ul>
+<li>PDU is Segments</li>
+<li>Segments contain user data</li>
+<li>TCP ensures bytes out match bytes in</li>
+</ul>
+</section>
+<section id="tcp-contd-3" class="slide level2">
+<h2>TCP (contd)</h2>
+<ul>
+<li>TCP also provides multiplexing</li>
+<li>Does so by using ports</li>
+<li>65535 possible ports</li>
+</ul>
+</section>
+<section id="tcp-header" class="slide level2">
+<h2>TCP Header</h2>
+<figure>
+<img src="TCPHeader.png" alt="TCP Header" /><figcaption>TCP Header</figcaption>
+</figure>
+</section>
+<section id="tcp-connections" class="slide level2">
+<h2>TCP Connections</h2>
+<ul>
+<li>Relies on 3 way handshake</li>
+<li>Receiving end opens port</li>
+<li>Sender sends SYN</li>
+<li>SYN + ACK</li>
+<li>ACK</li>
+</ul>
+</section>
+<section id="tcp-transfers" class="slide level2">
+<h2>TCP Transfers</h2>
+<ul>
+<li>Each packet gets an ACK</li>
+<li>Timer for each packet - retransmit if no ack</li>
+<li>Waits for ack before next packet</li>
+<li>Windowing changes above</li>
+</ul>
+</section>
+<section id="connection-termination" class="slide level2">
+<h2>Connection Termination</h2>
+<ul>
+<li>Person disconnecting sends FIN</li>
+<li>Other end ACK</li>
+<li>Same ends sends FIN</li>
+<li>Final ACK</li>
+</ul>
+</section>
+<section id="tcp-state-machine" class="slide level2">
+<h2>TCP State Machine</h2>
+<figure>
+<img src="TCPState.png" alt="TCP State Machine" /><figcaption>TCP State Machine</figcaption>
+</figure>
+</section>
+<section id="tcp-window" class="slide level2">
+<h2>TCP Window</h2>
+<ul>
+<li>Allows multiple packets without ACK</li>
+<li>Up to amount specified in window size header</li>
+<li>Window &quot;slides&quot; past all ACK'd packets</li>
+<li>Newer TCP uses a multiplier on window size</li>
+</ul>
+</section>
+<section id="options" class="slide level2">
+<h2>Options</h2>
+<ul>
+<li>Unlike IP, lots of options used
+<ul>
+<li>NOP for padding</li>
+<li>Maximum Segment Size</li>
+<li>Window Scale</li>
+<li>Timestamp and previous timestamp</li>
+</ul></li>
+</ul>
+</section>
+<section id="security-issues-with-tcp" class="slide level2">
+<h2>Security issues with TCP</h2>
+<ul>
+<li>Spoofing</li>
+<li>Connection Teardown</li>
+<li>RST</li>
+</ul>
+</section>
+<section id="tcpdump-examples" class="slide level2">
+<h2>TCPDump Examples</h2>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="next-session---udpicmp" class="slide level2">
+<h2>Next Session - UDP/ICMP</h2>
+<ul>
+<li>Chapter 23, 25</li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
