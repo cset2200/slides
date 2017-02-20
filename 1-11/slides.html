@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200-lecture-12" class="slide level2">
+<h2>CSET 2200 Lecture 12</h2>
+</section>
+<section id="reviewquestions" class="slide level2">
+<h2>Review/Questions</h2>
+</section>
+<section id="layer-5---session-layer" class="slide level2">
+<h2>Layer 5 - Session Layer</h2>
+<ul>
+<li>Handles persistent sessions between hosts</li>
+<li>Somewhat like TCP</li>
+<li>Often provides Authorization or Authentication</li>
+<li>Mostly unimplemented</li>
+<li>ZIP, X.225 examples</li>
+</ul>
+</section>
+<section id="layer-6---presentation-layer" class="slide level2">
+<h2>Layer 6 - Presentation Layer</h2>
+<ul>
+<li>Handles data conversions</li>
+<li>Also not often implemented</li>
+<li>Sometimes handles encryption</li>
+<li>Often blended with Application Layer</li>
+</ul>
+</section>
+<section id="layer-7---application-layer" class="slide level2">
+<h2>Layer 7 - Application Layer</h2>
+<ul>
+<li>The interesting one</li>
+<li>All of the protocols applications provide</li>
+<li>In OSI, mostly just concerned with display</li>
+<li>Lots of protocols here</li>
+<li>We'll cover a few useful ones today
+<ul>
+<li>BOOTP</li>
+<li>DHCP</li>
+<li>DNS</li>
+</ul></li>
+</ul>
+</section>
+<section id="bootp" class="slide level2">
+<h2>BOOTP</h2>
+<ul>
+<li>Provides IP assignment services to hosts</li>
+<li>Client broadcasts request</li>
+<li>Contains MAC</li>
+<li>Servers responds via broadcast with address</li>
+<li>Kinda like ARP in reverse</li>
+<li>UDP port 67 for server, 68 for replies</li>
+</ul>
+</section>
+<section id="dhcp" class="slide level2">
+<h2>DHCP</h2>
+<ul>
+<li>Superseded Bootp</li>
+<li>Like BOOTP but supports pools</li>
+<li>Has many potential options</li>
+<li>Mask passed in options</li>
+<li>Gateway too along with DNS</li>
+</ul>
+</section>
+<section id="dhcp-process" class="slide level2">
+<h2>DHCP Process</h2>
+<ul>
+<li>DHCP Discovery
+<ul>
+<li>Broadcast to 255.255.255.255</li>
+<li>Sends MAC address</li>
+<li>Sends IP address if previously assigned</li>
+</ul></li>
+</ul>
+</section>
+<section id="dhcp-process-contd" class="slide level2">
+<h2>DHCP Process (contd)</h2>
+<ul>
+<li>DHCP Offer
+<ul>
+<li>Server Sends offer</li>
+<li>Contains IP address</li>
+<li>Usually specifies options for lease length</li>
+<li>Also options for gateway, mask, etc</li>
+</ul></li>
+</ul>
+</section>
+<section id="dhcp-process-contd-1" class="slide level2">
+<h2>DHCP Process (contd)</h2>
+<ul>
+<li>DHCP Request
+<ul>
+<li>Client sends request for offered IP</li>
+<li>Can also ignore and not request</li>
+<li>In case of multiple offers only one accepted</li>
+</ul></li>
+</ul>
+</section>
+<section id="dhcp-process-contd-2" class="slide level2">
+<h2>DHCP Process (contd)</h2>
+<ul>
+<li>DHCP Acknowledgement
+<ul>
+<li>Server sends ack or nak of offer</li>
+<li>Client can short cut and just rerequest old address</li>
+<li>Server will NAK if unavailable</li>
+</ul></li>
+</ul>
+</section>
+<section id="dhcp-options" class="slide level2">
+<h2>DHCP Options</h2>
+<ul>
+<li>DHCP can send a bunch of other options</li>
+<li>Routers</li>
+<li>Boot Info</li>
+<li>DNS Servers</li>
+<li>Routes</li>
+<li>Config servers for VOIP</li>
+</ul>
+</section>
+<section id="dhcp-relay" class="slide level2">
+<h2>DHCP Relay</h2>
+<ul>
+<li>DHCP supports cross network pools</li>
+<li>Router on the edge forwards the broadcasts as unicast</li>
+<li>Handles replies</li>
+</ul>
+</section>
+<section id="dns" class="slide level2">
+<h2>DNS</h2>
+<ul>
+<li>Domain Name System</li>
+<li>How friendly names get turned into IPs</li>
+<li>UDP/TCP port 53</li>
+<li>Complex protocol</li>
+</ul>
+</section>
+<section id="dns-contd" class="slide level2">
+<h2>DNS (contd)</h2>
+<ul>
+<li>DNS is a hierarchy</li>
+<li>Supports both forward and reverse lookups
+<ul>
+<li>Name to IP</li>
+<li>IP to Name</li>
+</ul></li>
+<li>Reverse is a special zone in the root of the hierarcy</li>
+</ul>
+</section>
+<section id="dns-root-servers" class="slide level2">
+<h2>DNS Root Servers</h2>
+<ul>
+<li>Bootstraping problems</li>
+<li>How to find IP of Servers to use for lookups</li>
+<li>DNS hints file provides</li>
+</ul>
+</section>
+<section id="delegation" class="slide level2">
+<h2>Delegation</h2>
+<ul>
+<li>DNS servers rely on delegating parts of the tree</li>
+<li>Hints provide root, we then lookup each component</li>
+<li>com, net, org, us, etc top level domains</li>
+<li>Delegation to a TLD server for that TLD</li>
+<li>Continues down the tree until we find answer</li>
+</ul>
+</section>
+<section id="dns-soa-record" class="slide level2">
+<h2>DNS SOA Record</h2>
+<ul>
+<li>Start of Authority</li>
+<li>Includes &quot;serial number&quot;</li>
+<li>Timer for refresh, expiration</li>
+<li>Contact info for zone</li>
+</ul>
+</section>
+<section id="a-record" class="slide level2">
+<h2>A Record</h2>
+<ul>
+<li>&quot;Standard&quot; name lookup</li>
+<li>Returns IPV4 address of a name</li>
+</ul>
+</section>
+<section id="ns-record" class="slide level2">
+<h2>NS Record</h2>
+<ul>
+<li>Used to delegate subzone to another DNS server</li>
+</ul>
+</section>
+<section id="mx-record" class="slide level2">
+<h2>MX Record</h2>
+<ul>
+<li>Specifies &quot;mail exchanger&quot; for a domain</li>
+<li>Contains a priority number of the exchanger</li>
+</ul>
+</section>
+<section id="ptr-record" class="slide level2">
+<h2>PTR Record</h2>
+<ul>
+<li>Used for reverse DNS</li>
+<li>Usually in the in-addr.arpa zone</li>
+</ul>
+</section>
+<section id="other-record-types" class="slide level2">
+<h2>Other record types</h2>
+<ul>
+<li>TXT</li>
+<li>AAAA</li>
+<li>CNAME</li>
+<li>SRV</li>
+</ul>
+</section>
+<section id="other-dns-info" class="slide level2">
+<h2>Other DNS info</h2>
+<ul>
+<li>TTL specifies how long we cache info</li>
+<li>Most servers support a AXFR type to transfer data</li>
+<li>Records can have multiple entries</li>
+</ul>
+</section>
+<section id="wireshark-examples" class="slide level2">
+<h2>Wireshark examples</h2>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="next-lesson---starting-some-routing" class="slide level2">
+<h2>Next Lesson - starting some routing</h2>
+<ul>
+<li>Chapter 20 - a basic understanding</li>
+<li>May cover some of 27</li>
+<li>https://en.wikipedia.org/wiki/History_of_the_Internet</li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
