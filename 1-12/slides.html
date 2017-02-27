@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200-lecture-13" class="slide level2">
+<h2>CSET 2200 Lecture 13</h2>
+</section>
+<section id="reviewquestions" class="slide level2">
+<h2>Review/Questions</h2>
+</section>
+<section id="homework-question-3" class="slide level2">
+<h2>Homework Question 3</h2>
+</section>
+<section id="dns-review" class="slide level2">
+<h2>DNS Review</h2>
+<ul>
+<li>DNS is Hierachal</li>
+<li>Maps name to IP and IP to Name</li>
+<li>A records = hosts</li>
+<li>NS records delegate</li>
+<li>PTR records map IP to host</li>
+</ul>
+</section>
+<section id="tying-it-all-together" class="slide level2">
+<h2>Tying it all together</h2>
+<ul>
+<li>So far covered LAN</li>
+<li>Some WAN</li>
+<li>How do we tie them together</li>
+</ul>
+</section>
+<section id="internetworks" class="slide level2">
+<h2>Internetworks</h2>
+<ul>
+<li>Connecting individual networks</li>
+<li>Internet is the prime example</li>
+<li>Architecture has varied over the years</li>
+</ul>
+</section>
+<section id="history-of-internetworks" class="slide level2">
+<h2>History of internetworks</h2>
+<ul>
+<li>Ethernet long king for LAN</li>
+<li>How LAN connects has varied over years</li>
+</ul>
+</section>
+<section id="early-days" class="slide level2">
+<h2>Early days</h2>
+<ul>
+<li>Slow links</li>
+<li>Expensive dedicate circuits</li>
+<li>Little redundancy</li>
+</ul>
+</section>
+<section id="getting-more-complex" class="slide level2">
+<h2>Getting more complex</h2>
+<ul>
+<li>Links get faster</li>
+<li>Still largely dedicated</li>
+<li>Some virtual connections over dedicated</li>
+</ul>
+</section>
+<section id="modern-days" class="slide level2">
+<h2>Modern days</h2>
+<ul>
+<li>VPN slowly replacing dedicated circuits</li>
+<li>Ethernet taking over WAN/MAN circuits</li>
+<li>Common for many companies to only have internet</li>
+</ul>
+</section>
+<section id="connecting-internetworks" class="slide level2">
+<h2>Connecting Internetworks</h2>
+<ul>
+<li>We've discussed Layer 2 connections</li>
+<li>Routers connect layer 2 segments
+<ul>
+<li>This should be review</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-is-a-router" class="slide level2">
+<h2>What is a router</h2>
+<ul>
+<li>Essential specialized PC</li>
+<li>Has multiple network cards</li>
+<li>Makes decisions based on layer 3 data</li>
+<li>These days may be a switch too</li>
+</ul>
+</section>
+<section id="how-routers-work" class="slide level2">
+<h2>How routers work</h2>
+<ul>
+<li>Read packet</li>
+<li>Examine Layer header</li>
+<li>Examine Route table for destination network</li>
+<li>Resolve layer 2 address of next hop</li>
+<li>Forward Packet</li>
+</ul>
+</section>
+<section id="routing-tables" class="slide level2">
+<h2>Routing tables</h2>
+<ul>
+<li>Route tables also called Routing Information Base</li>
+<li>Store Information needed to move packets
+<ul>
+<li>Destination Network</li>
+<li>Destination Mask</li>
+<li>Next Hop</li>
+<li>Optional metric</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-packets-are-routed" class="slide level2">
+<h2>How packets are routed</h2>
+<ul>
+<li>Most specific match wins</li>
+<li>If tie, pick the lowest of highest metric</li>
+</ul>
+</section>
+<section id="default-route" class="slide level2">
+<h2>Default Route</h2>
+<ul>
+<li>Route of 0.0.0.0/0</li>
+<li>Where packets get sent if no other match present</li>
+<li>Most hosts have ONLY default route</li>
+</ul>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="to-summarize" class="slide level2">
+<h2>To summarize</h2>
+<ul>
+<li>Networks link computers together</li>
+<li>Started as low speed links</li>
+<li>Over time got faster</li>
+</ul>
+</section>
+<section id="osi-model" class="slide level2">
+<h2>OSI Model</h2>
+<ul>
+<li>Physical</li>
+<li>Data Link</li>
+<li>Network</li>
+<li>Transport</li>
+<li>Session</li>
+<li>Presentation</li>
+<li>Application</li>
+</ul>
+</section>
+<section id="tcpip-model" class="slide level2">
+<h2>TCP/IP Model</h2>
+<ul>
+<li>Physical (Optional)</li>
+<li>Link</li>
+<li>Internet</li>
+<li>Transport</li>
+<li>Application</li>
+</ul>
+</section>
+<section id="next-session" class="slide level2">
+<h2>Next Session</h2>
+<ul>
+<li>Summary (contd)</li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
