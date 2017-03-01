@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200-lecture-14---summary-day" class="slide level2">
+<h2>CSET 2200 Lecture 14 - Summary Day!</h2>
+</section>
+<section id="physical-layer" class="slide level2">
+<h2>Physical Layer</h2>
+<ul>
+<li>PDU: Bit</li>
+<li>Electrical or Optical implementation that carries data</li>
+<li>Ethernet, Token Ring, Wifi, Bluetooth, etc</li>
+</ul>
+</section>
+<section id="data-link-layer" class="slide level2">
+<h2>Data Link Layer</h2>
+<ul>
+<li>PDU: Frame</li>
+<li>Handles local communication</li>
+</ul>
+</section>
+<section id="ethernet" class="slide level2">
+<h2>Ethernet</h2>
+<ul>
+<li>Has pieces of Layer 1 and Layer 2</li>
+<li>802.3 is the IEEE working group</li>
+<li>Primary LAN technology</li>
+</ul>
+</section>
+<section id="ethernet-phy" class="slide level2">
+<h2>Ethernet PHY</h2>
+<ul>
+<li>Layer 1 piece of Ethernet</li>
+<li>Defines Electical Format
+<ul>
+<li>10Base2 - Thin Coax</li>
+<li>10Base5 - Thick Coax</li>
+<li>10BaseT - Twisted Pair</li>
+<li>100BaseT - 100mbps</li>
+<li>1000BaseT, 10GBaseT, etc - all Twisted Pair</li>
+<li>XBaseFX/LX/SX/ZX - Ethernet over Fiber</li>
+</ul></li>
+</ul>
+</section>
+<section id="ethernet-layer-1" class="slide level2">
+<h2>Ethernet Layer 1</h2>
+<ul>
+<li>Broadcast Medium</li>
+<li>Every frame is seen by everyone</li>
+<li>Various devices such as switches limit this</li>
+</ul>
+</section>
+<section id="csmacd" class="slide level2">
+<h2>CSMA/CD</h2>
+<ul>
+<li>Carrier Sense Multi Access with Collision Detect</li>
+<li>Listen before you transmit</li>
+<li>When gap transmit and listen</li>
+<li>If garbage, back off random time and try again</li>
+</ul>
+</section>
+<section id="collision-domain" class="slide level2">
+<h2>Collision Domain</h2>
+<ul>
+<li>Hosts that all receive broadcasts electrically</li>
+<li>Switches limit broadcast domain</li>
+</ul>
+</section>
+<section id="full-vs-half-duplex" class="slide level2">
+<h2>Full vs Half Duplex</h2>
+<ul>
+<li>With half one transmitter at a time</li>
+<li>With full both can - only 2 stations possible</li>
+</ul>
+</section>
+<section id="layer-2---ethernet" class="slide level2">
+<h2>Layer 2 - Ethernet</h2>
+<ul>
+<li>PDU: Frame</li>
+<li>Address - 6 byte MAC address</li>
+<li>Format:
+<ul>
+<li>6 Byte Dest Mac</li>
+<li>6 Byte Src Mac</li>
+<li>Optional 4 byte tag</li>
+<li>2 Byte type (Or size then type)</li>
+<li>Pay load</li>
+</ul></li>
+</ul>
+</section>
+<section id="devices" class="slide level2">
+<h2>Devices</h2>
+<ul>
+<li>Repeater extends reach</li>
+<li>Hub just connects multiple twisted pair - dumb and half duplex</li>
+<li>Bridge joins two collision domains</li>
+<li>Switch is a multi port bridge
+<ul>
+<li>Each port collision domain</li>
+<li>Usually full duplex</li>
+</ul></li>
+</ul>
+</section>
+<section id="layer-3" class="slide level2">
+<h2>Layer 3</h2>
+<ul>
+<li>PDU is packet</li>
+<li>Address - 4 byte IP address</li>
+<li>Dotted quad</li>
+<li>Each network has a network and a mask</li>
+<li>Mask decides if address is local</li>
+</ul>
+</section>
+<section id="arp" class="slide level2">
+<h2>ARP</h2>
+<ul>
+<li>Used to Map layer 3 to Layer 2</li>
+<li>Sent to broadcast asking who has an IP</li>
+<li>Response is Unicast with answer</li>
+</ul>
+</section>
+<section id="ipv4" class="slide level2">
+<h2>IPv4</h2>
+<ul>
+<li>Connectionless</li>
+<li>Best effort</li>
+<li>Addresses allocated by IANA</li>
+</ul>
+</section>
+<section id="classes" class="slide level2">
+<h2>Classes</h2>
+<ul>
+<li>A = 0-127 (128 networks, 2^24 hosts)</li>
+<li>B = 128-191 (16384 netwirks, 2^16 hosts)</li>
+<li>C = 193-223 (2^21 networks, 256 hosts)</li>
+<li>D = 224-239 (Multicast)</li>
+<li>E = 240-255 (Experimental)</li>
+<li>Can be combined or split if classless</li>
+</ul>
+</section>
+<section id="rfc1918-space" class="slide level2">
+<h2>RFC1918 Space</h2>
+<ul>
+<li>Private use</li>
+<li>10.0.0.0/8</li>
+<li>172.16.0.0/12</li>
+<li>192.168.0.0/16</li>
+</ul>
+</section>
+<section id="ipv4-header" class="slide level2">
+<h2>IPV4 Header</h2>
+<figure>
+<img src="IPv4Header.png" alt="IPV4 Header" /><figcaption>IPV4 Header</figcaption>
+</figure>
+</section>
+<section id="subnets" class="slide level2">
+<h2>Subnets</h2>
+<ul>
+<li>Written as dotted quad or CIDR mask</li>
+<li>1 is care bit or network address</li>
+<li>0 is host addresses</li>
+<li>Binary AND to determine if local</li>
+</ul>
+</section>
+<section id="cidr" class="slide level2">
+<h2>CIDR</h2>
+<ul>
+<li>Classless Inter-Domain Routing</li>
+<li>Uses VLSM
+<ul>
+<li>Variable Length Subnet Mask</li>
+</ul></li>
+</ul>
+</section>
+<section id="vlsm" class="slide level2">
+<h2>VLSM</h2>
+<ul>
+<li>Split network and host at any boundary</li>
+<li>We can combine adjacent networks or split big ones</li>
+<li>Use Tree method to split networks if needed</li>
+</ul>
+</section>
+<section id="layer-4" class="slide level2">
+<h2>Layer 4</h2>
+<ul>
+<li>TCP</li>
+<li>UDP</li>
+<li>ICMP</li>
+</ul>
+</section>
+<section id="tcp" class="slide level2">
+<h2>TCP</h2>
+<ul>
+<li>Transport Control Protocol</li>
+<li>PDU: Segment</li>
+<li>Connection Oriented</li>
+<li>Stream Oriented</li>
+<li>Reliable
+<ul>
+<li>In Order Deliery</li>
+<li>Error Handling</li>
+</ul></li>
+</ul>
+</section>
+<section id="tcp-header" class="slide level2">
+<h2>TCP Header</h2>
+<figure>
+<img src="TCPHeader.png" alt="TCP Header" /><figcaption>TCP Header</figcaption>
+</figure>
+</section>
+<section id="tcp-connections" class="slide level2">
+<h2>TCP connections</h2>
+<ul>
+<li>3 way handshake to connect</li>
+<li>4 way handshake to disconnect</li>
+<li>Each packet gets ACK</li>
+<li>Scaling controls ACK with no reply</li>
+</ul>
+</section>
+<section id="udp" class="slide level2">
+<h2>UDP</h2>
+<ul>
+<li>PDU: Datagram</li>
+<li>User Datagram Protocol</li>
+<li>Connectionless</li>
+<li>Unreliable</li>
+<li>Used by services that need low latency</li>
+</ul>
+</section>
+<section id="udp-header" class="slide level2">
+<h2>UDP Header</h2>
+<figure>
+<img src="UDPHeader.png" alt="UDP Header" /><figcaption>UDP Header</figcaption>
+</figure>
+</section>
+<section id="icmp" class="slide level2">
+<h2>ICMP</h2>
+<ul>
+<li>Intenret Control Message Protocol</li>
+<li>Error handling</li>
+<li>Also used for Ping/Traceroute</li>
+</ul>
+</section>
+<section id="icnp-header" class="slide level2">
+<h2>ICNP Header</h2>
+<figure>
+<img src="ICMPHeader.png" alt="ICMP Header" /><figcaption>ICMP Header</figcaption>
+</figure>
+</section>
+<section id="layer-5---session" class="slide level2">
+<h2>Layer 5 - Session</h2>
+<ul>
+<li>Not much to talk about</li>
+<li>Handles Persistence</li>
+<li>Not present in TCP/IP Model</li>
+</ul>
+</section>
+<section id="layer-6---presentation" class="slide level2">
+<h2>Layer 6 - Presentation</h2>
+<ul>
+<li>Again boring</li>
+<li>Handles data conversion</li>
+<li>Also not in TCP/IP Model</li>
+</ul>
+</section>
+<section id="layer-7---application" class="slide level2">
+<h2>Layer 7 - Application</h2>
+<ul>
+<li>What we care about if not network people</li>
+<li>Carries user data</li>
+<li>Many Protocols</li>
+</ul>
+</section>
+<section id="bootp" class="slide level2">
+<h2>BOOTP</h2>
+<ul>
+<li>Used to get IP address from ARP</li>
+<li>Opposite of ARP kinda</li>
+<li>Static mappings</li>
+<li>Simple request/reply</li>
+</ul>
+</section>
+<section id="dhcp" class="slide level2">
+<h2>DHCP</h2>
+<ul>
+<li>Extends BOOTP to add dynamic pools</li>
+<li>Supports passing other options
+<ul>
+<li>Discover</li>
+<li>Offer</li>
+<li>Request</li>
+<li>Acknowledge</li>
+</ul></li>
+</ul>
+</section>
+<section id="dns" class="slide level2">
+<h2>DNS</h2>
+<ul>
+<li>Domain name system</li>
+<li>Maps hosts to IP and vice versa</li>
+<li>Many hosts to one IP</li>
+<li>One IP to one hostname</li>
+<li>Hierachal - also a tree</li>
+</ul>
+</section>
+<section id="dns-contd" class="slide level2">
+<h2>DNS (contd)</h2>
+<ul>
+<li>A record = Answer - Hostname</li>
+<li>NS Record = Name Server - Delegation</li>
+<li>CNAME Record = Alias</li>
+<li>PTR record = Pointer - Reverse</li>
+</ul>
+</section>
+<section id="internetworks" class="slide level2">
+<h2>Internetworks</h2>
+<ul>
+<li>Link many local networks</li>
+<li>Internet large example</li>
+<li>Changing as time goes on</li>
+</ul>
+</section>
+<section id="router" class="slide level2">
+<h2>Router</h2>
+<ul>
+<li>Links multiple layer 2 networks</li>
+<li>Moves packets at layer 3</li>
+</ul>
+</section>
+<section id="route-table" class="slide level2">
+<h2>Route table</h2>
+<ul>
+<li>Contains destination network</li>
+<li>Mask</li>
+<li>Next Hop IP</li>
+<li>Metric</li>
+</ul>
+</section>
+<section id="routing" class="slide level2">
+<h2>Routing</h2>
+<ul>
+<li>Most specific match wins</li>
+<li>On tie metric breaks it</li>
+<li>Metric varies by protocol</li>
+<li>Default Gateway (0.0.0.0/0) = Where packets go if not known</li>
+</ul>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="next-session" class="slide level2">
+<h2>Next Session</h2>
+<ul>
+<li>Review game/session
+<ul>
+<li>Lucas will have exam so will likely give good review</li>
+</ul></li>
+<li>Exam 2 weeks from today</li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
