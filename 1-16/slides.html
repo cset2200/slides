@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200" class="slide level2">
+<h2>CSET 2200</h2>
+<h3 id="routing-rip-and-vlans">Routing (RIP) and VLANs</h3>
+</section>
+<section id="pc-example-from-last-week" class="slide level2">
+<h2>PC Example from last week</h2>
+</section>
+<section id="routing-information-protocol-rip" class="slide level2">
+<h2>Routing Information Protocol (RIP)</h2>
+<ul>
+<li>Distance Vector routing protocol</li>
+<li>Occasionally broadcasts all routes</li>
+<li>Routers add one to each route before resending</li>
+<li>Hop count max of 15 (16 is infinity)</li>
+</ul>
+</section>
+<section id="loop-protection" class="slide level2">
+<h2>Loop protection</h2>
+<ul>
+<li>Split Horizon (Don't transmit out receive int)</li>
+<li>Poison Routes</li>
+<li>Hold Down timer</li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+</section>
+<section id="rip-v1-vs-v2" class="slide level2">
+<h2>RIP v1 vs v2</h2>
+<ul>
+<li>v1 used all broadcasts</li>
+<li>Containe no mask information</li>
+<li>v2 uses multicast</li>
+<li>Also transmit subnet info</li>
+</ul>
+</section>
+<section id="rip-implementation" class="slide level2">
+<h2>RIP Implementation</h2>
+</section>
+<section id="other-routing-information" class="slide level2">
+<h2>Other Routing information</h2>
+</section>
+<section id="advanced-layer-2" class="slide level2">
+<h2>&quot;Advanced&quot; Layer 2</h2>
+<ul>
+<li>VLANs</li>
+<li>Spanning Tree</li>
+</ul>
+</section>
+<section id="virtual-lans" class="slide level2">
+<h2>Virtual LANs</h2>
+<ul>
+<li>Allow a switch to handle multiple broadcast domains</li>
+<li>802.1q is the IEEE standard</li>
+<li>Uses the tag field of the Ethernet header</li>
+</ul>
+</section>
+<section id="vlan-contd" class="slide level2">
+<h2>VLAN (Contd)</h2>
+<ul>
+<li>Used to seperate layer 3 networks</li>
+<li>Security and or Management reasons</li>
+<li>Need a router to route between them</li>
+</ul>
+</section>
+<section id="q" class="slide level2">
+<h2>802.1q</h2>
+<ul>
+<li>Uses 0x8100 in the Ethertype field to identify tag</li>
+<li>Adds a 3 bit QoS field</li>
+<li>Adds a 1 bit Drop Eligibile bit</li>
+<li>12 bit VLAN id</li>
+</ul>
+</section>
+<section id="vlan-id" class="slide level2">
+<h2>VLAN id</h2>
+<ul>
+<li>VLAN 0-4095</li>
+<li>0 and 4095 reserved</li>
+<li>1 is normally the default</li>
+</ul>
+</section>
+<section id="trunk-ports" class="slide level2">
+<h2>Trunk ports</h2>
+<ul>
+<li>Allow a single cable or link to transit multiple VLANs</li>
+<li>Packets on the trunk are tagged</li>
+<li>One VLAN may be untagged</li>
+</ul>
+</section>
+<section id="access-ports" class="slide level2">
+<h2>Access ports</h2>
+<ul>
+<li>Access ports transmit packets untagged</li>
+<li>Only contain a single VLAN</li>
+</ul>
+</section>
+<section id="uses-for-vlans" class="slide level2">
+<h2>Uses for VLANs</h2>
+<ul>
+<li>Voice</li>
+<li>DMZ</li>
+<li>Guest Networks</li>
+<li>Segregtion of other traffic</li>
+</ul>
+</section>
+<section id="configuring-vlans" class="slide level2">
+<h2>Configuring VLANs</h2>
+<ul>
+<li>Done on the switch</li>
+<li>Cisco switch ports have multiple modes
+<ul>
+<li>trunk</li>
+<li>access</li>
+<li>dynamic</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<pre><code>interface gi0/1
+switchport mode trunk</code></pre>
+</section>
+<section class="slide level2">
+
+<pre><code>interface gi0/2
+switchport mode access
+switchport access vlan 10</code></pre>
+</section>
+<section id="router-interfaces" class="slide level2">
+<h2>Router interfaces</h2>
+<ul>
+<li>Most router support trunk interfaces</li>
+<li>Can configure subinterfaces on different vlans</li>
+<li>Required to route between VLANs</li>
+</ul>
+</section>
+<section id="example-configuration" class="slide level2">
+<h2>Example configuration</h2>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="next-time---stp-not-stone-temple-pilots" class="slide level2">
+<h2>Next time - STP (Not stone temple pilots)</h2>
+<ul>
+<li>Spanning tree</li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

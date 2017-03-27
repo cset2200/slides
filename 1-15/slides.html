@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200" class="slide level2">
+<h2>CSET 2200</h2>
+<h3 id="ip-routing">IP Routing</h3>
+</section>
+<section id="review-again" class="slide level2">
+<h2>Review (Again)</h2>
+<ul>
+<li>Routing is the process of moving packets between networks</li>
+<li>Performed by Routers</li>
+<li>Handles Layer 3</li>
+<li>Relies on other layers to actually move the data</li>
+</ul>
+</section>
+<section id="general-routing-rules" class="slide level2">
+<h2>General Routing Rules</h2>
+<ul>
+<li>Is Packet Local - If so Layer 2</li>
+<li>Consult routing table - find most specific match</li>
+<li>Rewrite packet with new Checksum, TTL, etc</li>
+<li>Forward to Layer 2 address found</li>
+</ul>
+</section>
+<section id="building-routing-tables" class="slide level2">
+<h2>Building Routing tables</h2>
+<ul>
+<li>Two ways tables are generall built
+<ul>
+<li>Static Routing</li>
+<li>Dynamic Routing</li>
+</ul></li>
+</ul>
+</section>
+<section id="static-routing" class="slide level2">
+<h2>Static Routing</h2>
+<ul>
+<li>Administrator manually configures route table</li>
+<li>Enters network, mask and destination</li>
+<li>Usually most preferred routes</li>
+<li>Has scalability issues</li>
+<li>Cannot adapt to change</li>
+</ul>
+</section>
+<section id="dynamic-routing" class="slide level2">
+<h2>Dynamic Routing</h2>
+<ul>
+<li>Uses an algorithm to build the route table</li>
+<li>If we have more than one route, favor the best</li>
+<li>If a route is removed add next best route</li>
+<li>Three general classes of Routing Protocol
+<ul>
+<li>Distance Vector</li>
+<li>Link State</li>
+<li>Hybrid</li>
+</ul></li>
+</ul>
+</section>
+<section id="distance-vector-routing" class="slide level2">
+<h2>Distance Vector Routing</h2>
+<ul>
+<li>Use a Distance and A Vector (duh)</li>
+<li>Distance is often number of hops</li>
+<li>Vector is the next hop IP</li>
+<li>Lowest hop count wins</li>
+<li>Information broadcast</li>
+<li>Simplest Protocol</li>
+<li>RIP common example</li>
+</ul>
+</section>
+<section id="link-state-routing" class="slide level2">
+<h2>Link State Routing</h2>
+<ul>
+<li>Route receives entire topology</li>
+<li>Has metrics for each link</li>
+<li>Calculates the shortest path using information</li>
+<li>Dijkstra's algorithm often used</li>
+<li>Much more complex than distance vector</li>
+<li>OSPF, IS-IS examples</li>
+</ul>
+</section>
+<section id="hybrid-protocols" class="slide level2">
+<h2>Hybrid Protocols</h2>
+<ul>
+<li>Combines pieces of Link State and Distance Vector</li>
+<li>Usually uses metrics such as bandwidth and hops</li>
+<li>May or may not have entire topology</li>
+<li>Usuaully not broadcast</li>
+<li>Examples include RIPv2, EIGRP, BGP</li>
+</ul>
+</section>
+<section id="configuring-static-routes" class="slide level2">
+<h2>Configuring Static Routes</h2>
+<pre><code>ip route &lt;network&gt; &lt;mask&gt; &lt;ip&gt;</code></pre>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<figure>
+<img src="Topology.png" alt="Topology" /><figcaption>Topology</figcaption>
+</figure>
+</section>
+<section id="basic-interface-configuration" class="slide level2">
+<h2>Basic Interface Configuration</h2>
+<pre><code>interface &lt;xxx&gt;
+ip address &lt;address&gt; &lt;mask&gt;
+no shutdown</code></pre>
+</section>
+<section id="verification-and-troubleshooting" class="slide level2">
+<h2>Verification and Troubleshooting</h2>
+<ul>
+<li>ping</li>
+<li>traceroute</li>
+<li>sh ip route</li>
+<li>sh ip int br</li>
+<li>sh int</li>
+</ul>
+</section>
+<section id="more-about-rip-v2" class="slide level2">
+<h2>More about RIP v2</h2>
+<ul>
+<li>Can have loops</li>
+<li>Only suitable for small simple networks</li>
+</ul>
+</section>
+<section id="configuring-rip-v2" class="slide level2">
+<h2>Configuring RIP v2</h2>
+<pre><code>router rip
+  network a.b.c.d
+  version 2</code></pre>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="next-class---layer-2-extensions-vlans" class="slide level2">
+<h2>Next class - Layer 2 extensions (VLANs)</h2>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
