@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200" class="slide level2">
+<h2>CSET 2200</h2>
+<h3 id="spanning-tree">Spanning tree</h3>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="completion-of-vlan-demo" class="slide level2">
+<h2>Completion of VLAN Demo</h2>
+</section>
+<section id="spanning-tree---the-problem" class="slide level2">
+<h2>Spanning Tree - The problem</h2>
+<ul>
+<li>Loops</li>
+<li>Need to add redundent links</li>
+<li>Backup without intervention</li>
+</ul>
+</section>
+<section id="solution---spanning-tree" class="slide level2">
+<h2>Solution - Spanning Tree</h2>
+<ul>
+<li>Develops a loop free topology</li>
+<li>Defined in 802.1D</li>
+<li>Updated over the years</li>
+<li>802.1Q is most recent</li>
+</ul>
+</section>
+<section id="spanning-tree-contd" class="slide level2">
+<h2>Spanning Tree (contd)</h2>
+<ul>
+<li>Spanning tree selects a root bridge</li>
+<li>Bridge with lowest priority</li>
+<li>If tied lowest mac</li>
+</ul>
+</section>
+<section id="spanning-tree-contd-1" class="slide level2">
+<h2>Spanning tree (contd)</h2>
+<ul>
+<li>Each switch finds lowest cost path to root</li>
+<li>Costs vary based on technology</li>
+<li>Ethernet uses bandwidth</li>
+<li>Lowest cost port is root port (RP)</li>
+</ul>
+</section>
+<section id="spanning-tree-contd-2" class="slide level2">
+<h2>Spanning tree (contd)</h2>
+<ul>
+<li>Each segment finds lowest cost to root</li>
+<li>Port connecting that segment is designated port (DP)</li>
+<li>All ports that aren't RP or DP block</li>
+</ul>
+</section>
+<section id="bpdu" class="slide level2">
+<h2>BPDU</h2>
+<ul>
+<li>Spanning tree communicates with BPDU</li>
+<li>Stands for Bridge Protocol Data Units</li>
+<li>Exchanged regurally (2 seconds)</li>
+</ul>
+</section>
+<section id="learning-process" class="slide level2">
+<h2>Learning process</h2>
+<ul>
+<li>Ports comes up and blocks</li>
+<li>Listening (Waiting for BPDU)</li>
+<li>Learning (Populates MAC table but still block)</li>
+<li>Forwarding (Passes data)</li>
+<li>Could also be Blocking or Disabled</li>
+</ul>
+</section>
+<section id="time-to-converge" class="slide level2">
+<h2>Time to converge</h2>
+<ul>
+<li>Default for Listen and Learn each 15 seconds</li>
+<li>Means ports take 30 seconds to come active</li>
+<li>Can cause outages as networks reconfigure</li>
+</ul>
+</section>
+<section id="vlans-and-stp" class="slide level2">
+<h2>VLANs and STP</h2>
+<ul>
+<li>All VLANs shared a tree origionally</li>
+<li>Two technologies to solve
+<ul>
+<li>Multiple Spanning Tree (MST)</li>
+<li>Per VLAN spanning tree (PVST)</li>
+</ul></li>
+</ul>
+</section>
+<section id="other-improvements" class="slide level2">
+<h2>Other improvements</h2>
+<ul>
+<li>Rapid Spanning Tree improves convergence time</li>
+<li>RPVST</li>
+</ul>
+</section>
+<section id="design-considerations" class="slide level2">
+<h2>Design Considerations</h2>
+<ul>
+<li>Want root towards the middle of the network</li>
+<li>Careful root design is important in large network</li>
+<li>With PVST want all links active between VLANs</li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+</section>
+<section id="questions-1" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="next-session-tbd---will-email" class="slide level2">
+<h2>Next session TBD - will email</h2>
+<ul>
+<li>Maybe NAT</li>
+<li>Maybe ACL</li>
+<li>Need to review Lab</li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
