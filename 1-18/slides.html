@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200" class="slide level2">
+<h2>CSET 2200</h2>
+<h3 id="access-control-lists">Access Control Lists</h3>
+</section>
+<section id="review" class="slide level2">
+<h2>Review</h2>
+</section>
+<section id="this-week" class="slide level2">
+<h2>This week</h2>
+<ul>
+<li>Security themed</li>
+<li>ACL</li>
+<li>NAT</li>
+</ul>
+</section>
+<section id="security-overview" class="slide level2">
+<h2>Security overview</h2>
+</section>
+<section id="access-control-lists-1" class="slide level2">
+<h2>Access Control Lists</h2>
+<ul>
+<li>Allow you to filter packets</li>
+<li>Support layer 2, 3 and 4</li>
+<li>We'll focus on 3 and 4</li>
+</ul>
+</section>
+<section id="acl" class="slide level2">
+<h2>ACL</h2>
+<ul>
+<li>Applied to an interface</li>
+<li>Seperate filter for inbound and outbound</li>
+</ul>
+</section>
+<section id="acl-contd" class="slide level2">
+<h2>ACL (contd)</h2>
+<ul>
+<li>Matches packets based on ACL entries</li>
+<li>Entries can be deny or allow</li>
+<li>First match wins</li>
+</ul>
+</section>
+<section id="cisco-acls" class="slide level2">
+<h2>Cisco ACLs</h2>
+<ul>
+<li>2 common types</li>
+<li>Standard (Source IP)</li>
+<li>Extended (Source and Dest, Layer 4)</li>
+<li>Names or Numbered</li>
+</ul>
+</section>
+<section id="standard-acls" class="slide level2">
+<h2>Standard ACLs</h2>
+<ul>
+<li>Only match source address</li>
+<li>Can match a host or a group of hosts</li>
+</ul>
+</section>
+<section id="wildcard-mask" class="slide level2">
+<h2>Wildcard mask</h2>
+<ul>
+<li>One is don't care bit</li>
+<li>Zero must match</li>
+<li>Somewhat opposite of subnet mask</li>
+<li>Doesn't need to be contigious</li>
+</ul>
+</section>
+<section id="example-with-standard-acl" class="slide level2">
+<h2>Example with Standard ACL</h2>
+</section>
+<section id="extended-acl" class="slide level2">
+<h2>Extended ACL</h2>
+<ul>
+<li>Allows you to match layer 4 items</li>
+<li>Specify the protocol, source dest ip</li>
+<li>Also specify the protocol specific detail</li>
+</ul>
+</section>
+<section id="match-tcp-and-udp" class="slide level2">
+<h2>Match TCP and UDP</h2>
+<ul>
+<li>Can match port</li>
+<li>Range of ports also supported</li>
+<li>Supports friendly names of many services</li>
+<li>gt, lt, range, eq</li>
+</ul>
+</section>
+<section id="creating-acls" class="slide level2">
+<h2>Creating ACLs</h2>
+<ul>
+<li>Numbered ACL can only be appended</li>
+<li>Named can be edited</li>
+<li>Use Sequence number to insert into ACL</li>
+</ul>
+</section>
+<section id="apply-acl" class="slide level2">
+<h2>Apply ACL</h2>
+<ul>
+<li>ip access group command</li>
+</ul>
+</section>
+<section id="useful-acl-commands" class="slide level2">
+<h2>Useful ACL commands</h2>
+<pre><code>sh access-list
+sh ip access-list
+sh ip interface</code></pre>
+</section>
+<section id="demonstration" class="slide level2">
+<h2>Demonstration</h2>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="wed---nat" class="slide level2">
+<h2>Wed - NAT</h2>
+<ul>
+<li>https://en.wikipedia.org/wiki/Network_address_translation</li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
