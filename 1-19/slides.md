@@ -135,6 +135,13 @@ ip nat inside source static tcp 192.168.1.20 443 72.240.53.108 8443 extendable
 
 ---
 
+## Nat troubleshooting
+
+- sh ip nat translations
+- sh ip nat statistics
+
+---
+
 ## Demonstration
 
 ---
