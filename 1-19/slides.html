@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200" class="slide level2">
+<h2>CSET 2200</h2>
+<h3 id="network-address-translation">Network Address Translation</h3>
+</section>
+<section id="review" class="slide level2">
+<h2>Review</h2>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="the-problems" class="slide level2">
+<h2>The problem(s)</h2>
+<ul>
+<li>IP addresses are scarce</li>
+<li>Renumbering networks is hard</li>
+<li>Private networks need to connect</li>
+</ul>
+</section>
+<section id="network-address-translation-1" class="slide level2">
+<h2>Network Address Translation</h2>
+<ul>
+<li>Converts one set of IP's to another</li>
+<li>Supports several different methodologies
+<ul>
+<li>One to One</li>
+<li>Port Mapping</li>
+<li>Masquerade (PAT)</li>
+</ul></li>
+</ul>
+</section>
+<section id="one-to-one-nat" class="slide level2">
+<h2>One to One NAT</h2>
+<ul>
+<li>Maps one external IP to one internal</li>
+<li>Used to remap networks</li>
+<li>Also sometime used to translate private to connect</li>
+</ul>
+</section>
+<section id="one-to-many-port-mapping" class="slide level2">
+<h2>One to Many (Port mapping)</h2>
+<ul>
+<li>Maps one external IP and Port to an inside IP and Port</li>
+<li>Often used to expose external services</li>
+<li>Very common - SOHO routers call port mapping</li>
+</ul>
+</section>
+<section id="masquerade-pat" class="slide level2">
+<h2>Masquerade (PAT)</h2>
+<ul>
+<li>Allows many interal IPs to show as one external IP</li>
+<li>Preserves IP space</li>
+<li>Very common at both residential and commercial</li>
+<li>Uses port rewriting to allow multiple connections</li>
+</ul>
+</section>
+<section id="other-nat-types" class="slide level2">
+<h2>Other NAT Types</h2>
+<ul>
+<li>NAT types can be combined</li>
+<li>Expose port on external IP that is mapped to</li>
+<li>PAT can be with a pool</li>
+</ul>
+</section>
+<section id="examples-and-application" class="slide level2">
+<h2>Examples and Application</h2>
+</section>
+<section id="cisco-implementation" class="slide level2">
+<h2>Cisco implementation</h2>
+<ul>
+<li>Outside and inside interface</li>
+<li>Local and global IPs</li>
+</ul>
+</section>
+<section id="example-of-localglobal" class="slide level2">
+<h2>Example of Local/Global</h2>
+</section>
+<section id="cisco-implentation-contd" class="slide level2">
+<h2>Cisco Implentation (Contd)</h2>
+<ul>
+<li>Tag inside and outside interfaces</li>
+<li>Create access list to match traffic (optional)</li>
+<li>Create NAT rules</li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<pre><code>interface GigabitEthernet0/0
+ ip address 72.240.28.131 255.255.255.0
+ ip nat outside
+interface GigabitEthernet0/1
+ ip address 192.168.1.1 255.255.255.0
+ ip nat inside
+access-list 101 permit ip 192.168.1.0 0.0.0.255 any
+ip nat inside source list 101 interface GigabitEthernet0/0 overload</code></pre>
+</section>
+<section id="example-2" class="slide level2">
+<h2>Example 2</h2>
+<pre><code>interface FastEthernet0/0
+ ip address 72.240.58.190 255.255.255.252 secondary
+ ip address 72.240.53.106 255.255.255.248
+ ip access-group 121 in
+ ip nat outside
+interface FastEthernet0/1
+ ip address 192.168.1.1 255.255.255.0
+ ip nat inside
+access-list 100 permit ip 192.168.1.0 0.0.0.255 any
+access-list 121 permit ip 12.37.9.0 0.0.0.255 host 72.240.53.107
+access-list 121 permit ip 72.241.56.64 0.0.0.7 host 72.240.53.107
+access-list 121 deny   ip any host 72.240.53.107
+access-list 121 permit ip any host 72.240.53.106
+access-list 121 permit ip 72.240.0.0 0.0.1.255 host 72.240.53.108
+access-list 121 permit ip 64.254.140.0 0.0.0.31 host 72.240.53.108
+access-list 121 permit ip 64.254.34.0 0.0.0.31 host 72.240.53.108
+access-list 121 permit ip 64.254.134.0 0.0.0.31 host 72.240.53.108
+access-list 121 permit ip 64.254.134.0 0.0.0.255 host 72.240.53.108
+access-list 121 permit ip 72.240.0.0 0.1.255.255 host 72.240.53.108
+ip nat inside source list 100 interface FastEthernet0/0 overload
+ip nat inside source static tcp 192.168.1.8 135 72.240.53.107 135 extendable
+ip nat inside source static tcp 192.168.1.8 137 72.240.53.107 137 extendable
+ip nat inside source static tcp 192.168.1.8 138 72.240.53.107 138 extendable
+ip nat inside source static tcp 192.168.1.8 139 72.240.53.107 139 extendable
+ip nat inside source static tcp 192.168.1.8 445 72.240.53.107 445 extendable
+ip nat inside source static tcp 192.168.1.8 1680 72.240.53.107 1680 extendable
+ip nat inside source static tcp 192.168.1.20 443 72.240.53.108 8443 extendable</code></pre>
+</section>
+<section id="demonstration" class="slide level2">
+<h2>Demonstration</h2>
+</section>
+<section id="questions-1" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="monday---firewalls" class="slide level2">
+<h2>Monday - Firewalls</h2>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
