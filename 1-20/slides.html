@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200" class="slide level2">
+<h2>CSET 2200</h2>
+<h3 id="firewalls">Firewalls</h3>
+</section>
+<section id="security-so-far" class="slide level2">
+<h2>Security so far</h2>
+<ul>
+<li>Routers have ACL</li>
+<li>Can filter packets</li>
+<li>Often performed in hardware</li>
+</ul>
+</section>
+<section id="firewalls-1" class="slide level2">
+<h2>Firewalls</h2>
+<ul>
+<li>Perform similar filtering to Router</li>
+<li>Track state</li>
+<li>Purpose built to inspect traffic</li>
+<li>Software filtering normally</li>
+</ul>
+</section>
+<section id="differences" class="slide level2">
+<h2>Differences</h2>
+<ul>
+<li>For basic purposes not much difference</li>
+<li>Firewalls track state</li>
+<li>Firewalls have richer configuration syntax</li>
+<li>Slower since software</li>
+</ul>
+</section>
+<section id="cisco-firewalls" class="slide level2">
+<h2>Cisco Firewalls</h2>
+<ul>
+<li>Original ones called Pix</li>
+<li>Now ASA (Adaptive Security Appliance)</li>
+<li>Come in many models</li>
+</ul>
+</section>
+<section id="asa" class="slide level2">
+<h2>ASA</h2>
+<ul>
+<li>Based on Intel chips</li>
+<li>Run custom PIX/ASA OS</li>
+<li>Models range from small soho to multi-gb solutions</li>
+</ul>
+</section>
+<section id="configuration" class="slide level2">
+<h2>Configuration</h2>
+<ul>
+<li>Somewhat like IOS</li>
+<li>A good number of differences</li>
+<li>Has more features to configure ACLs</li>
+</ul>
+</section>
+<section id="interfaces" class="slide level2">
+<h2>Interfaces</h2>
+<ul>
+<li>Interfaces get names also called zones</li>
+<li>Naming convention is somewhat different</li>
+<li>Normally a dedicated management interface</li>
+</ul>
+</section>
+<section id="security-zones" class="slide level2">
+<h2>Security Zones</h2>
+<ul>
+<li>Zones are names and applied to interfaces</li>
+<li>Each zone has a security level</li>
+<li>More secure (Higher value) can talk to less secure</li>
+<li>Less secure requres explicit ACL</li>
+<li>Traffic on same zone inter/intra interface can be defined</li>
+</ul>
+</section>
+<section id="acl-configuration" class="slide level2">
+<h2>ACL Configuration</h2>
+<ul>
+<li>New ASA supports objects and groups</li>
+<li>Let you name IPs</li>
+<li>Also lets you create groups</li>
+<li>Makes configuration easier to read</li>
+</ul>
+</section>
+<section id="acl-example" class="slide level2">
+<h2>ACL Example</h2>
+<pre><code>object-group network CNWR_trusted
+ network-object 64.254.140.0 255.255.255.224
+ network-object 64.254.134.0 255.255.255.0
+ network-object 72.240.52.32 255.255.255.240
+access-list acl_out extended permit tcp any host cnwr_exch_out eq https
+access-list acl_out extended permit tcp 72.240.52.32 255.255.255.240 host cnwr_exch_out eq smtp
+access-list acl_out extended permit tcp host 75.101.140.73 host cnwr_exch_out eq smtp
+access-list acl_out extended permit tcp host 72.240.50.75 host cnwr_exch_out eq smtp
+access-list acl_out extended permit tcp host 64.254.140.98 host cnwr_exch_out eq smtp
+access-list acl_out extended permit udp object-group CNWR_trusted host cnwr_fpbx_01 eq sip
+access-list acl_out extended permit udp object-group CNWR_trusted host cnwr_fpbx_01 eq tftp
+access-list acl_out extended permit tcp object-group CNWR_trusted host cnwr_fpbx_01 eq ssh</code></pre>
+</section>
+<section id="nat-and-the-asa" class="slide level2">
+<h2>NAT and the ASA</h2>
+<ul>
+<li>Configuration Style has varied over the years</li>
+<li>Current versions configure on objects</li>
+<li>Configure NAT-0 and Pool/PAT in after statements</li>
+</ul>
+</section>
+<section id="nat-example" class="slide level2">
+<h2>NAT Example</h2>
+<pre><code>object network IP-10.100.8.72
+ nat (inside,iisdmz) static 192.168.98.204
+nat (inside,outside) after-auto source dynamic inside_nat_outbound outside_global
+nat (norisdmz,outside) after-auto source dynamic norisdmz_nat_outbound outside_global</code></pre>
+</section>
+<section id="vpn-virtual-private-network" class="slide level2">
+<h2>VPN (Virtual Private Network)</h2>
+<ul>
+<li>ASA and Routers support VPN</li>
+<li>Routers need the right license</li>
+<li>VPN creates a virtual tunnel between networks</li>
+<li>Traffic usually encrypted</li>
+</ul>
+</section>
+<section id="inspections" class="slide level2">
+<h2>Inspections</h2>
+<ul>
+<li>ASA supports deep packet inspection</li>
+<li>Ensures right traffic passing on a port</li>
+<li>Example - HTTP over the DNS ports</li>
+</ul>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="demonstration" class="slide level2">
+<h2>Demonstration</h2>
+</section>
+<section id="questions-1" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="next-time---ipv6" class="slide level2">
+<h2>Next time - IPv6</h2>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
