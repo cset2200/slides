@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cset-2200" class="slide level2">
+<h2>CSET 2200</h2>
+<h3 id="ipv6">IPv6</h3>
+</section>
+<section id="ipv4-exhaustion" class="slide level2">
+<h2>IPv4 exhaustion</h2>
+<ul>
+<li>IPv4 provides 4294967296 IPs</li>
+<li>Seems like plenty</li>
+<li>In effect not enough
+<ul>
+<li>Classful is wasterful</li>
+<li>Many /8 unavailable</li>
+</ul></li>
+</ul>
+</section>
+<section id="short-term-solutions" class="slide level2">
+<h2>Short term solutions</h2>
+<ul>
+<li>PAT/NAT bought us time</li>
+<li>CIDR helped allocate better</li>
+</ul>
+</section>
+<section id="address-allocation" class="slide level2">
+<h2>Address Allocation</h2>
+<figure>
+<img src="AddressAllocation.png" alt="Address Allocation" /><figcaption>Address Allocation</figcaption>
+</figure>
+<p>http://www.potaroo.net/tools/ipv4/</p>
+</section>
+<section id="enter-ipv6" class="slide level2">
+<h2>Enter IPv6</h2>
+<ul>
+<li>128 bit address space</li>
+<li>Builds on work of IPv4</li>
+</ul>
+</section>
+<section id="ipv6-addresses" class="slide level2">
+<h2>IPv6 Addresses</h2>
+<p>340282366920938463463374607431768211456</p>
+</section>
+<section id="ipv6-1" class="slide level2">
+<h2>IPv6</h2>
+<ul>
+<li>Defines a new IP protocol</li>
+<li>RFC 2460</li>
+<li>Requires changes to many underlying protocols</li>
+</ul>
+</section>
+<section id="ipv6-address-format" class="slide level2">
+<h2>IPv6 Address Format</h2>
+<ul>
+<li>8 groups of 4 hex digits</li>
+<li>Remember each hex digit 0-15 (4 bits)</li>
+<li>16 bits per group * 8 group = 128 bits</li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<ul>
+<li>2001:0470:c3af:0000:0000:0000:0000:0000/48</li>
+</ul>
+</section>
+<section id="address-abbreviation" class="slide level2">
+<h2>Address abbreviation</h2>
+<ul>
+<li>Leading 0's can be omitted</li>
+<li>A single group of multiple 0 groupings can be replaced by ::</li>
+<li>2001:470:c3af::/48 would be above</li>
+</ul>
+</section>
+<section id="ipv6-networks" class="slide level2">
+<h2>IPv6 Networks</h2>
+<ul>
+<li>Similar to IPv4</li>
+<li>We have Host and network pieces</li>
+<li>If multiple of 4 or 16, easy with hex</li>
+<li>Else we need to go to binary</li>
+</ul>
+</section>
+<section id="ipv6-prefixes" class="slide level2">
+<h2>IPv6 Prefixes</h2>
+<ul>
+<li>Start with 2 or 3 global routed</li>
+<li>2001 = US</li>
+<li>3FFE = old experimental space still used</li>
+</ul>
+</section>
+<section id="ipv6-reserved-prefixes" class="slide level2">
+<h2>IPv6 Reserved Prefixes</h2>
+<ul>
+<li>FD = Unique Local</li>
+<li>FF = Multicast</li>
+<li>FE80 = Link Local</li>
+</ul>
+</section>
+<section id="subnet-allocation" class="slide level2">
+<h2>Subnet Allocation</h2>
+<ul>
+<li>Most often a /64 allocated</li>
+<li>Makes auto addressing easier</li>
+<li>Companies usually get a /48</li>
+</ul>
+</section>
+<section id="interface-addressing" class="slide level2">
+<h2>Interface Addressing</h2>
+<ul>
+<li>Interfaces can be statically assigned</li>
+<li>Also assigned via EUI-64</li>
+</ul>
+</section>
+<section id="eui-64" class="slide level2">
+<h2>EUI-64</h2>
+<ul>
+<li>Based on MAC address</li>
+<li>Should be unique</li>
+<li>Split MAC address in half</li>
+<li>Insert FFFE between the halves</li>
+<li>Flip bit 7 of first octet</li>
+</ul>
+</section>
+<section id="example-1" class="slide level2">
+<h2>Example</h2>
+<ul>
+<li>78:31:c1:c0:76:fc</li>
+<li>7831:c1 c0:76fc</li>
+<li>7831:c1ff:fec0:76fc</li>
+<li>5831:c1ff:fec0:767v</li>
+</ul>
+</section>
+<section id="assigning-addresses-to-hosts" class="slide level2">
+<h2>Assigning addresses to hosts</h2>
+<ul>
+<li>Normally EUI-64 addresses</li>
+<li>Can also be DHCP</li>
+<li>Neighbor Discovery Protocol used too</li>
+<li>Stateless Address Auto Configuration (SLAAC)</li>
+</ul>
+</section>
+<section id="neighbor-discovery-protocol" class="slide level2">
+<h2>Neighbor Discovery Protocol</h2>
+<ul>
+<li>Helps hosts find neighbors</li>
+<li>Replaces ARP</li>
+<li>Also supports prefix discovery</li>
+<li>Router discovery</li>
+</ul>
+</section>
+<section id="dhcp-and-ipv6" class="slide level2">
+<h2>DHCP and IPv6</h2>
+<ul>
+<li>DHCP does not provide default router</li>
+<li>Can be used stateless with NDP SLAAC to help</li>
+</ul>
+</section>
+<section id="special-multicast-addresses" class="slide level2">
+<h2>Special Multicast Addresses</h2>
+<ul>
+<li>FF02:1 - All Nodes</li>
+<li>FF02:2 - All Routers</li>
+<li>FF02:9 - RIPNng</li>
+</ul>
+</section>
+<section id="configuring-ipv6-on-cisco-routers" class="slide level2">
+<h2>Configuring IPv6 on Cisco Routers</h2>
+<ul>
+<li>Need to enable ipv6</li>
+<li>Command is ipv6 unicast-routing</li>
+</ul>
+</section>
+<section id="interface-configuration" class="slide level2">
+<h2>Interface Configuration</h2>
+<ul>
+<li>ipv6 address
+<address>
+/<prefix length></li>
+<li>ipv6 address <network>/<prefix length> eui-64</li>
+<li>ipv6 address dhcp</li>
+<li>ipv6 address autoconfig</li>
+</ul>
+</section>
+<section id="ipv6-routing" class="slide level2">
+<h2>IPv6 Routing</h2>
+<ul>
+<li>ipv6 route <prefix>/<prefix length> <interface></li>
+<li>ipv6 route <prefix>/<prefix length>
+<address></li>
+<li>ipv6 route <prefix>/<prefix length> interface
+<address></li>
+<li>Default can be set with autoconfig</li>
+</ul>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="demonstration" class="slide level2">
+<h2>Demonstration</h2>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
